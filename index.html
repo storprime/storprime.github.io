@@ -1,849 +1,257 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8' />
-    <title>Mapbox Zoning</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
-    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v0.16.0/mapbox-gl-draw.js'></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v0.16.0/mapbox-gl-draw.css' type='text/css' />
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
-
+  <meta charset='utf-8'/>
+  <title>Durham Commuters</title>
+  <meta name = 'viewport' content='initial-scale=1, maximum-scale=1,user-scalable=no' />
+  <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.4/mapbox-gl-draw.css' type='text/css' />
 </head>
-<body>
-
-<!--zoning navigation menu -->
-<nav id='ZoningMenu'>
-	<p id="Zoning-Explanation"> Click button to turn on/off zoning overlay, then click the map
-</nav>
-
 
 <!--map object -->
 <div id='map'></div>
 
 <style>
-
 /*map style*/
-#map {position:absolute;
+#map {
+      position:absolute;
       top:0;
       bottom:0;
       width:100%;
       z-index: 0;
-        }
-
-/*popups - divs are set dynamically in the toggle functions below. This is why they are not seen in the <body> above */
-.mapboxgl-popup {
-	max-width: 350px;
-	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;}
-
-html .mapboxgl-popup-content {
-	padding: 0px;
-	-webkit-box-shadow: 0 0 1px 1px rgba(0,0,0,0.2);
-	box-shadow: 0 0 1px 1px rgba(0,0,0,0.2);
-	opacity: 0.95;
-}
-
-.mapboxgl-popup h3 {
-	color: #000000;
-	font-size: 15px;
-	font-weight: bold;
-	padding-left: 10px;
-	padding-right: 10px;
-
-}
-
-.mapboxgl-popup p {
-	color: #000000;
-	font-size: 13px;
-	font-weight: none;
-	padding-left: 5px;
-	padding-right: 25px;
-}
-
-/*popup style per div class zone category*/
-.CRE {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #FF5B1D;
-	border-top: 0px;
-	border-right: 0;
-	border-bottom: 0;}
-
-.CR {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #FF5B1D;
-	border-top: 0px;
-	border-right: 0px;
-	border-bottom: 0px;}
-
-.CL {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #FF5B1D;
-	border-top: 0px;
-	border-right: 0px;
-	border-bottom: 0px;}
-
-.R {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #FFE01D;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-.RA {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #FFE01D;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-.RD {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #FFE01D;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-.RS {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #FFE01D;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-.RM {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #FFE01D;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-.RT {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #FFE01D;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-.I {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #EE8CFF;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-.IE {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #EE8CFF;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-.IH {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #EE8CFF;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.IPW {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #EE8CFF;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.IS {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #EE8CFF;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.O {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #1B5E20;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.ON {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #1B5E20;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.OR {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #1B5E20;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.OC {
-	border-style: solid;
-	padding-left:5px;
-	border-left: 15px solid #1B5E20;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.OG {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #1B5E20;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.OM {
-	border-style: solid;
-	padding-left:5px;
-	border-left: 15px solid #1B5E20;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.E {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #5BB6CF;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.EL	{
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #5BB6CF;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.EC{
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #5BB6CF;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.EO	{
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #5BB6CF;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-.UT {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #838383;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-.UNASSIGNED {
-	border-style: solid;
-	padding-left: 5px;
-	border-left: 15px solid #838383;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;}
-
-
-/*Interactive legend - below is the CSS code for styling the interactive toggle buttons. The div elements to which the styles are applied are generated dynamically by the  javascript functions below*/
-/*zoning menu style; almost identical to the building information menu specifications below*/
-#ZoningMenu {
-
-   background-color: rgba(255,255,255,0.85);
-   position: absolute;
-   display: block;
-   margin: 5px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   z-index: 1;
-   top: 100px;
-   right: 25px;
-   border-radius: 5px;
-   width: 250px;
-   border: 1px solid rgba(0,0,0,0.4);
-   font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-   text-decoration-color: rgba(130,130,130,1);
-   z-index: 2;
-
-  }
-
-
-#Zoning-Explanation{
-
- 	 	display: block;
-        margin: 5px;
-        padding: 5px;
-        text-decoration: none;
-        border-top: none;
-        text-align: center;
-        color: rgba(130,130,130,1);
-        z-index: 3;
-    }
-/*zoning menu "buttons" style. See colour specifications below. Also, see toggle javascript functions below*/
-#ZoningMenu a {
-        display: block;
-        margin: 5px;
-        padding: 5px;
-        border-bottom: 1px solid rgba(0,0,0,0.25);
-        text-align: center;
-        text-decoration: none;
-        color: #404040;
-        z-index: 3;
-    }
-
-
-#ZoningMenu a:last-child {
-        border: none;
-        background-color: rgba(255,255,255,1);
-    }
-
-#ZoningMenu a:hover {
-        background-color: #6A6A6A;
-        opacity: 0.75;
-        color: #F9F9F9;
-        font: bold;
-    }
-
-
-    }
-
-/*hover styles for toggled / clicked buttons*/
-#ZoningMenu a.active:hover {
-        background: #6A6A6A;
-	color: #F9F9F9;}
-
-
-html .mapboxgl-ctrl-top-right {
-    top: 50px;
-    right: 100px;
-}
-
-html .mapboxgl-ctrl-group{
-	    width: 250px;
-	    margin: 10px 0px;
-		border-radius: 0;
-		-moz-box-shadow: 0px 0px 2px rgba(250,250,250,0.85);
-		-webkit-box-shadow: 0px 0px 2px rgba(250,250,250,0.85);
-		box-shadow: none;
-		overflow: hidden;
-		background: transparent;
-		z-index:4;
-	}
-
-html .mapboxgl-ctrl-group button {
-		width: 35px;
-		height: 35px;
-		display: inline-block;
-		padding: 0;
-		outline: none;
-		border: none;
-		border-bottom: none;
-		box-sizing: border-box;
-		cursor: pointer;
-		background-color: rgba(250,250,250,0.85);
-		border-radius: 25px;
-		margin: 0 7px 0 0;
-		top: 0px;
-		float: right;
-	}
-
-#p .Link {
-	text-decoration: none;
-  color: #404040;
-}
-
+     }
 </style>
 
-<script>
-mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcnByaW1lIiwiYSI6InR6YWtmU2MifQ.mzm3c3_RSxKKc5MgUe0Fig';
-
-//[from the MapboxGL API] The map's Mapbox style. This must be an a JSON object conforming to the schema described in the Mapbox Style Specification , or a URL to such JSON.
-//To load a style from the Mapbox API, you can use a URL of the form mapbox://styles/:owner/:style, where :owner is your Mapbox account name and :style is the style ID. Or you can use one of the following the predefined Mapbox styles:
-
-var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/storprime/cjdalgxvfayh22rnuqvpq2gaq', //mapbox underlying style location
-    center: [-79.379590, 43.637965], // starting location
-    zoom: 13, // starting zoom
-    bearing: -16,// starting direction
-    pitch: 0, // starting angle
-
-});
-
-
-map.on('style.load', function(){
-
-	// Add zoom and rotation controls to the map.
-	map.addControl(new mapboxgl.NavigationControl());
-
-
-	map.setLight({
-
-		'anchor': "map",
-  		'color': "white",
-  		'intensity': 1,
-  		'position': [
-  				90,
-  				180,
-  				90,]});
-
-
-	/*add zoning categories data*/
-	map.addSource('Zoning_with_bylaw_links-70ij2o', {
-		type: "vector",
-		url: 'mapbox://storprime.7207h2bc'
-	});
-
-
-   map.addSource('TO_ZBL_labels-br6hf5', {
-		type: "vector",
-		url: 'mapbox://storprime.4gxfoan2'
-	}); // zoning label points
-
-// add layers, rendered "versions" of the sources listed above
-  map.addLayer({
-		'id':"Zoning",
-		'type':"fill",
-		'layout': {
-      		visibility: 'none'},
-		'source': 'Zoning_with_bylaw_links-70ij2o',
-		"source-layer":'Zoning_with_bylaw_links-70ij2o',
-    	'paint': {
-    		'fill-color': {
-        		'property': 'ZN_ZONE',
-        		'type': 'categorical',
-        		'stops': [
-          		['CRE', '#FF5B1D'],
-          		['CR', '#FF5B1D'],
-          		['CL', '#FF5B1D'],
-          		['R', '#FFE01D'],
-          		['RA', '#FFE01D'],
-          		['RD', '#FFE01D'],
-          		['RS', '#FFE01D'],
-		        ['RM', '#FFE01D'],
-		        ['RT', '#FFE01D'],
-		        ['I', '#EE8CFF'],
-		        ['IE', '#EE8CFF'],
-		        ['IH', '#EE8CFF'],
-          		['IPW', '#EE8CFF'],
-          		['IS', '#EE8CFF'],
-          		['O', '#80CF5B'],
-          		['ON', '#80CF5B'],
-         		['OR', '#80CF5B'],
-          		['OC', '#80CF5B'],
-          		['OG', '#80CF5B'],
-          		['OM', '#80CF5B'],
-          		['E', '#5BB6CF'],
-          		['EL', '#5BB6CF'],
-          		['EC', '#5BB6CF'],
-          		['EO', '#5BB6CF'],
-          		['UT', '#D9D9D9'],
-         		['UNASSIGNED', '#FBFBFB'],
-        	]}, 'fill-opacity': 0.5, 'fill-outline-color': '#838383'
-      	}
-    },);
-
-
-  /*create layers for every zone category*/
-    /*map.addLayer({
-		'id':"Commercial-Residential-Employment",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "CRE"],
-    	'paint': {
-    		'fill-color': '#FF5B1D',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-
-    map.addLayer({
-		'id':"Commercial-Residential",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "CR"],
-    	'paint': {
-    		'fill-color': '#FF5B1D',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-    map.addLayer({
-		'id':"Residential",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "R"],
-    	'paint': {
-    		'fill-color': '#FBD900',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-
-    map.addLayer({
-		'id':"Residential-Apartment",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "RA"],
-    	'paint': {
-    		'fill-color': '#FBD900',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-    map.addLayer({
-		'id':"Residential-Multiple",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "RM"],
-    	'paint': {
-    		'fill-color': '#FBD900',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-   map.addLayer({
-		'id':"Residential-Detached",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "RD"],
-    	'paint': {
-    		'fill-color': '#FBD900',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-    map.addLayer({
-		'id':"Residential-Townhouse",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "RT"],
-    	'paint': {
-    		'fill-color': '#FBD900',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-    map.addLayer({
-		'id':"Institutional-Education",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "IE"],
-    	'paint': {
-    		'fill-color': '#EE8CFF',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-    map.addLayer({
-		'id':"Institutional-Hospital",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "IH"],
-    	'paint': {
-    		'fill-color': '#EE8CFF',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-
-     map.addLayer({
-		'id':"Employment-Industrial",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "E"],
-    	'paint': {
-    		'fill-color': '#5BB6CF',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-
-
-    map.addLayer({
-		'id':"Employment-Light-Industrial",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "EL"],
-    	'paint': {
-    		'fill-color': '#5BB6CF',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-     map.addLayer({
-		'id':"Employment-Industrial-Office",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "EO"],
-    	'paint': {
-    		'fill-color': '#5BB6CF',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-    map.addLayer({
-		'id':"Open-Space",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "O"],
-    	'paint': {
-    		'fill-color': '#699722',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-    map.addLayer({
-		'id':"Cemetaries",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "OC"],
-    	'paint': {
-    		'fill-color': '#699722',
-
-            'fill-opacity': 0.5,
-      	},
-    },);
-
-    map.addLayer({
-		'id':"Recreation",
-		'type':"fill",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'Zoning_with_bylaw_links-31jvsb',
-		"source-layer":'Zoning_with_bylaw_links-31jvsb',
-		"filter": ["==", "ZN_ZONE", "OR"],
-    	'paint': {
-    		'fill-color': '#80CF5B',
-
-            'fill-opacity': 0.5,
-      	},
-    },);*/
-
-
-
- map.addLayer({
-		'id':"Zoning-hover",
-		'type':"line",
-		'interactivity': "true",
-		'source': 'Zoning_with_bylaw_links-70ij2o',
-		'layout': {
-      		'visibility': 'visible'},
-		"source-layer":'Zoning_with_bylaw_links-70ij2o',
-    	'paint': {
-    		'line-color': {
-        		'property': 'ZN_ZONE',
-        		'type': 'categorical',
-        		'stops': [
-          		['CRE', '#A51900'],
-          		['CR', '#A51900'],
-          		['CL', '#A51900'],
-          		['R', '#FBB300'],
-          		['RA', '#FBB300'],
-          		['RD', '#FBB300'],
-          		['RS', '#FBB300'],
-		        ['RM', '#FBB300'],
-		        ['RT', '#FBB300'],
-		        ['I', '#EE8CFF'],
-		        ['IE', '#EE8CFF'],
-		        ['IH', '#EE8CFF'],
-          		['IPW', '#EE8CFF'],
-          		['IS', '#EE8CFF'],
-          		['O', '#1B5E20'],
-          		['ON', '#80CF5B'],
-         		['OR', '#80CF5B'],
-          		['OC', '#80CF5B'],
-          		['OG', '#80CF5B'],
-          		['OM', '#80CF5B'],
-          		['E', '#5BB6CF'],
-          		['EL', '#5BB6CF'],
-          		['EC', '#5BB6CF'],
-          		['EO', '#5BB6CF'],
-          		['UT', '#D9D9D9'],
-         		['UNASSIGNED', '#FBFBFB'],
-        	]}, 'line-width':4,'line-blur':1,'line-offset':4,
-      	}, "filter": ["==", "ObjID", ""],
-    },);
-
-/* this code adds the zoning labels layer, but when added these do not show in the resulting map. This is likely a tile rendering issue that Mapbox has (in my opinion). This layer is instead loaded directly into the Mapbox style 'mapbox://styles/storprime/cizu4nyb000002so24fn1yynj'
-/* map.addLayer({
-		'id':"Zoning-labels",
-		'type':"symbol",
-		'layout': {
-      		visibility: 'visible'},
-		'source': 'TO_ZBL_labels-br6hf5',
-		"text-field": '{Zone_name}',
-		"paint": {
-			"text-opacity": 1,
-			"text-color":'#353535',
-            "text-halo-width": '2',
-		},
-
-    },'poi-label','place_label_city','place_label_other','road_major_label',"Below-Regulated-Height");*/
-
-});
-
-/* zoning categories popups*/
-map.on ('click', function (e){
-
-/* query the feature that is clicked*/
-var features = map.queryRenderedFeatures(e.point, { layers: ["Zoning"]});
-
-/* if the queried features array has objects  - has length - then return then return*/
-if (!features.length){
-		return;}
-/* capture in a new variable the first feature clicked*/
-var feature = features[0];
-
-/* set a new popup object at the clicked point*/
-var popup = new mapboxgl.Popup()
-.setLngLat(map.unproject(e.point))
-/* dynamically create the html content of each popup based on concatenating pre-written html and certain attribute / property fields */
-.setHTML('<h3 class='
-+feature.properties.ZN_NAME
-+'>'
-+feature.properties.ZN_NAME+
-'</h3> <p class='
-+feature.properties.ZN_ZONE+
-'><b> Zone Code:</b> '
-+feature.properties.ZN_ZONE+
-'<br /><b> Exception? : </b>'
-+feature.properties.Excep_stat+
-'<br /><b> ByLaw Exception : </b> <a href="'
-+feature.properties.HTMExcept+
-'" style=color:#000>'+feature.properties.ZBL_EXCPTN+'</a><br /><b> ByLaw Section : </b> <a href="'
-+feature.properties.HTMChapt+
-'" style=color:#000>' +feature.properties.ZBL_SECTIO+ '</a><br /></p>')
-
-/* add popup to the map object*/
-.addTo(map);
-
-});
-
-
-
-/*set cursor style on hover for zoning*/
-map.on("mousemove", function() {
-	map.setFilter("Zoning-hover", ["==", "ObjID", ""])
-	;}
-);
-
-
-/*set zoning highlight on hover*/
-map.on('mousemove', function (e) {
-	var features = map.queryRenderedFeatures(e.point, {layers: ["Zoning-hover"]});
-	if (features.length) {
-		map.setFilter("Zoning-hover", ["==", "ObjID",features[0].properties.ObjID]);}
-	else {
-		map.setFilter("Zoning-hover", ["==", "ObjID", ""]);
-		}
-});
-
-/*zone toggle buttons for each sub-category. Each map LAYER (not source) is referenced in the the toggleableZoningLayerIds array*/
-var toggleableZoningLayerIds = ["Zoning"];
-
-/*toggle functions to dynamically create the html button elements*/
-for (var i = 0; i < toggleableZoningLayerIds.length; i++){
-	var id = toggleableZoningLayerIds[i];
-	var link = document.createElement('a');
-	link.href = '#';
-	link.className = id;
-	link.textContent = id;
-
-	link.onclick = function (e) {
-		var clickedLayer = this.textContent;
-		e.preventDefault();
-		e.stopPropagation();
-
-		/*find out if the layer that the button references is visible or not. If not visible, on click make it visible and vice versa*/
-		var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-
-		if (visibility === 'visible') {
-			map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-			this.className = '';}
-
-			else {
-				this.className = clickedLayer;
-				map.setLayoutProperty(clickedLayer, 'visibility','visible');
-			};
-
-	};
-/*dynamically assign html to the "link" - the toggle button*/
-var zoningLayers = document.getElementById('ZoningMenu');
-zoningLayers.appendChild(link);
-};
-
-</script>
 
+<body>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcnByaW1lIiwiYSI6InR6YWtmU2MifQ.mzm3c3_RSxKKc5MgUe0Fig';
+
+    var map = new mapboxgl.Map({
+      container: 'map', //container id
+      style: 'mapbox://styles/storprime/cjpslur6w0dbi2so8gb2r1953',
+      center: [-78.892013,44.037565],
+      zoom: 10, //starting zoom
+      bearing: -16, // starting direction
+      pitch: 0, //starting pitch
+
+    });
+
+    map.on('style.load', function() {
+      // zoom and rotation controls for the <map>
+        map.addControl (new mapboxgl.NavigationControl());
+
+        map.setLight({
+          'anchor':'map',
+          'color':'white',
+          'intensity': 0.40,
+          'position': [45,45,45,],
+        });
+
+        //add sources
+        map.addSource('Durham2-6wy63w', {
+          type: "vector",
+          url: "mapbox://storprime.8kdkezoj"
+        }); //updated
+
+        map.addSource('Durham_outline-azvjqv', {
+          type: "vector",
+          url: "mapbox://storprime.05f3xdtp"
+        });
+
+        //add map layers
+        map.addLayer({
+          'id': 'outline',
+          'type': 'line',
+          'source': 'Durham_outline-azvjqv',
+          'source-layer': 'Durham_outline-azvjqv',
+          'paint': {
+            'line-color': '#212F3C',
+            'line-width':4,
+            'line-blur':1,
+            'line-opacity':0.5
+          }
+        })
+
+        map.addLayer({
+          'id': '15 min or less',
+          'type':'fill',
+          'source': 'Durham2-6wy63w',
+          'source-layer': 'Durham2-6wy63w',
+          'paint': {
+            'fill-color': {
+              'property': 'because QGIS is dumb_45 to 59 min_norm',
+              'type':'interval',
+              'stops': [
+              [1, '#FFFFFF'],
+              [2, '#F4D03F'],
+              [3, '#F39C12'],
+              [4, '#CA6F1E'],
+              [5, '#A04000'],
+              [10, '#6E2C00'],
+              [20, '#6E2C00'],
+              [30, '#6E2C00'],
+              [40, '#6E2C00'],
+              [100, '#6E2C00'],
+            ]},
+            'fill-opacity': 0.75,
+            'fill-outline-color': '#212F3C',
+          }
+        },'road-label-large', 'road-label-medium', 'road-label-small');
+
+        map.addLayer({
+          'id': '15 min or less_3d',
+          'type':'fill-extrusion',
+          'source': 'Durham2-6wy63w',
+          'source-layer': 'Durham2-6wy63w',
+          'paint': {
+            'fill-extrusion-height': {
+              'property': 'because QGIS is dumb_45 to 59 min_norm',
+              'type':'interval',
+              'stops': [
+              [1, 0],
+              [2, 200],
+              [3, 300],
+              [4, 400],
+              [5, 500],
+              [10, 1000],
+              [20, 2000],
+              [30, 3000],
+              [40, 4000],
+              [100, 10000],
+            ]},
+
+            'fill-extrusion-color': {
+              'property': 'because QGIS is dumb_45 to 59 min_norm',
+              'type':'interval',
+              'stops': [
+              [1, '#FFFFFF'],
+              [2, '#F4D03F'],
+              [3, '#F39C12'],
+              [4, '#CA6F1E'],
+              [5, '#A04000'],
+              [10, '#6E2C00'],
+              [20, '#6E2C00'],
+              [30, '#6E2C00'],
+              [40, '#6E2C00'],
+              [100, '#6E2C00'],
+            ]},
+            'fill-extrusion-opacity': 0.90,
+            'fill-extrusion-vertical-gradient': true,
+          }
+        },'road-label-large', 'road-label-medium', 'road-label-small');
+
+        map.addLayer({
+          'id': '15 to 29 min',
+          'type':'fill',
+          'layout': {
+            visibility: 'none'},
+          'source': 'Durham2-6wy63w',
+          'source-layer': 'Durham2-6wy63w',
+          'paint': {
+            'fill-color': {
+              'property': 'because QGIS is dumb_15 to 29 min_norm',
+              'type':'interval',
+              'stops': [
+              [10, '#DAF7A6'],
+              [20, '#FFC300'],
+              [30, '#FF5733'],
+              [40, '#C70039'],
+              [50, '#900C3F'],
+              [60, '#581845'],
+              [70, '#581845'],
+              [80, '#581845'],
+              [90, '#581845'],
+              [100, '#581845'],
+            ]}, 'fill-opacity': 0.75,
+          }
+        });
+
+        map.addLayer({
+          'id': '30 to 44 min',
+          'type':'fill',
+          'layout': {
+            visibility: 'none'},
+          'source': 'Durham2-6wy63w',
+          'source-layer': 'Durham2-6wy63w',
+          'paint': {
+            'fill-color': {
+              'property': 'because QGIS is dumb_30 to 44 min_norm',
+              'type':'interval',
+              'stops': [
+              [10, '#DAF7A6'],
+              [20, '#FFC300'],
+              [30, '#FF5733'],
+              [40, '#C70039'],
+              [50, '#900C3F'],
+              [60, '#581845'],
+              [70, '#581845'],
+              [80, '#581845'],
+              [90, '#581845'],
+              [100, '#581845'],
+            ]}, 'fill-opacity': 0.75,
+          }
+        });
+
+        map.addLayer({
+          'id': '45 to 59 min',
+          'type':'fill',
+          'layout': {
+            visibility: 'none'},
+          'source': 'Durham2-6wy63w',
+          'source-layer': 'Durham2-6wy63w',
+          'paint': {
+            'fill-color': {
+              'property': 'because QGIS is dumb_45 to 59 min_norm',
+              'type':'interval',
+              'stops': [
+              [10, '#DAF7A6'],
+              [20, '#FFC300'],
+              [30, '#FF5733'],
+              [40, '#C70039'],
+              [50, '#900C3F'],
+              [60, '#581845'],
+              [70, '#581845'],
+              [80, '#581845'],
+              [90, '#581845'],
+              [100, '#581845'],
+            ]}, 'fill-opacity': 0.75,
+          }
+        });
+
+        map.addLayer({
+          'id': 'over 60 min',
+          'type':'fill',
+          'layout': {
+            visibility: 'none'},
+          'source': 'Durham2-6wy63w',
+          'source-layer': 'Durham2-6wy63w',
+          'paint': {
+            'fill-color': {
+              'property': 'because QGIS is dumb_60 minutes and over_norm',
+              'type':'interval',
+              'stops': [
+              [10, '#DAF7A6'],
+              [20, '#FFC300'],
+              [30, '#FF5733'],
+              [40, '#C70039'],
+              [50, '#900C3F'],
+              [60, '#581845'],
+              [70, '#581845'],
+              [80, '#581845'],
+              [90, '#581845'],
+              [100, '#581845'],
+            ]}, 'fill-opacity': 0.75,
+          }
+        });
+
+
+      });
+  </script>
 </body>
 </html>
+
 
