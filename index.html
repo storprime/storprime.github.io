@@ -2,16 +2,24 @@
 <html>
 <head>
   <meta charset='utf-8'/>
-  <title>Durham Commuters</title>
+  <title>Interactive Census</title>
   <meta name = 'viewport' content='initial-scale=1, maximum-scale=1,user-scalable=no' />
   <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
   <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.4/mapbox-gl-draw.css' type='text/css' />
-</head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+</head>
+<body>
 <!--map object -->
+
+<!--zoning navigation menu -->
+<nav id='Menu'>
+	<p id="Menu-Explanation"> <b>RLA Options</b> <br> Click buttons to toggle on/off</p>
+</nav>
+
 <div id='map'></div>
 
 <style>
@@ -23,19 +31,161 @@
       width:100%;
       z-index: 0;
      }
+
+
+ /*popups - divs are set dynamically in the toggle functions below. This is why they are not seen in the <body> above */
+    .mapboxgl-popup {
+     max-width: 350px;
+     font: 12px/20px 'Helvetica Neue', sans-serif;
+    }
+
+     html .mapboxgl-popup-content {
+     padding: 0px;
+     -webkit-box-shadow: 0 0 1px 1px rgba(0,0,0,0.2);
+     box-shadow: 0 0 1px 1px rgba(0,0,0,0.2);
+     opacity: 0.95;
+     }
+
+     .mapboxgl-popup h3 {
+     	color: #000000;
+     	font-size: 16px;
+     	font-weight: bold;
+     	padding-left: 15px;
+     	padding-right: 25px;
+     }
+
+     .mapboxgl-popup p {
+     	color: #000000;
+     	font-size: 13px;
+     	font-weight: none;
+     	padding-left: 15px;
+     	padding-right: 25px;
+     }
+
+#Menu {
+
+      background-color: rgba(78,78,78,0.85);
+      position: absolute;
+      color: rgba(255,255,255,0.75);
+      display: block;
+      margin: 5px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      z-index: 1;
+      top: 100px;
+      right: 25px;
+      border-radius: 10px;
+      width: 250px;
+      border: 1px solid rgba(0,0,0,0.4);
+      font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      color: rgba(255,255,255,0.75);
+      z-index: 2;
+      }
+
+#Menu-Explanation {
+
+      display: block;
+      margin: 5px;
+      padding: 5px;
+      text-decoration: none;
+      border-top: 1px solid rgba(0,0,0,0.25);
+      text-align: center;
+      color: rgba(255,255,255,0.75);
+      z-index: 3;
+      }
+
+       /*zoning menu "buttons" style. See colour specifications below. Also, see toggle javascript functions below*/
+#Menu a {
+      display: block;
+      margin: 5px;
+      padding: 5px;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+      text-align: center;
+      color: rgba(255,255,255,0.75);
+      z-index: 3;
+      }
+
+#Menu a:last-child {
+      border: none;
+      }
+
+#Menu a:hover {
+      background-color: #FFFFFF;
+      opacity: 0.75;
+      color: #404040;
+      font: bold;
+      }
+
+/*zoning menu "buttons" colours. See toggle javascript functions below*/
+#Menu a.Corridor_1:active  {
+      background-color: #DEDEDE;
+      color: #ffffff;
+      }
+
+#Menu a.Corridor_2:active  {
+      background-color: #DEDEDE;
+      color: #ffffff;
+      }
+
+#Menu a.Corridor_3:active   {
+      background-color: #DEDEDE;
+      color: #ffffff;
+      }
+
+/*hover styles for toggle buttons*/
+#Menu a.active {
+      background: #DEDEDE;
+      }
+
+
+html .mapboxgl-ctrl-top-right {
+      top: 50px;
+      right: 85px;
+      }
+
+html .mapboxgl-ctrl-group{
+      width: 250px;
+      margin: 10px 0px;
+      border-radius: 0;
+      -moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.1);
+      -webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.1);
+      box-shadow: none;
+      overflow: hidden;
+      background: transparent;
+      z-index:4;
+      }
+
+html .mapboxgl-ctrl-group button {
+      width: 35px;
+      height: 35px;
+      display: inline-block;
+      padding: 0;
+      outline: none;
+      border: none;
+      border-bottom: none;
+      box-sizing: border-box;
+      cursor: pointer;
+      background-color: rgba(107,107,107,0.85);
+      border-radius: 25px;
+      margin: 0 7px 0 0;
+      top: 0px;
+      float: right;
+      }
+
+
 </style>
 
 
-<body>
-  <script>
+<script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcnByaW1lIiwiYSI6InR6YWtmU2MifQ.mzm3c3_RSxKKc5MgUe0Fig';
 
     var map = new mapboxgl.Map({
       container: 'map', //container id
-      style: 'mapbox://styles/storprime/cjpslur6w0dbi2so8gb2r1953',
-      center: [-78.892013,44.037565],
+      style: 'mapbox://styles/storprime/cjrwm2mkv0d281fofa2ijq9cj', //new satellite image updated
+      center: [-79.382749,43.650550],
       zoom: 10, //starting zoom
-      bearing: -16, // starting direction
+      bearing: 0, // starting direction
       pitch: 0, //starting pitch
 
     });
@@ -52,206 +202,307 @@
         });
 
         //add sources
-        map.addSource('Durham2-6wy63w', {
+        map.addSource('Corridor_1_4326-34p40e', {
           type: "vector",
-          url: "mapbox://storprime.8kdkezoj"
+          url: "mapbox://storprime.d2065xi8"
         }); //updated
 
-        map.addSource('Durham_outline-azvjqv', {
+        //add sources
+        map.addSource('Corridor_2_4326-5t873k', {
           type: "vector",
-          url: "mapbox://storprime.05f3xdtp"
-        });
+          url: "mapbox://storprime.ck0i721c"
+        }); //
 
-        //add map layers
+        //add sources
+        map.addSource('Corridor_3_4326-48gylw', {
+          type: "vector",
+          url: "mapbox://storprime.af326lrg"
+        }); //
+
+
+
+        //add sources
+        map.addSource('Corridor_1_stations-anhhl5', {
+          type: "vector",
+          url: "mapbox://storprime.22w2iyfd"
+        }); //
+
+        //add sources
+        map.addSource('Corridor_2_stations-4vvyt6', {
+          type: "vector",
+          url: "mapbox://storprime.3ayrx31g"
+        }); //
+
+        //add sources
+        map.addSource('Corridor_3_stations-4yo7oz', {
+          type: "vector",
+          url: "mapbox://storprime.6m04bqq3"
+        }); //
+
+        //add sources
+        map.addSource('centrelines_4326-avpqvn', {
+          type: "vector",
+          url: "mapbox://storprime.09hcelyz"
+        }); //
+
+        map.addSource('Corridors_merged-aldi4d', {
+          type: "vector",
+          url: "mapbox://storprime.1i5soa68"
+        }); //updated
+
+
         map.addLayer({
-          'id': 'outline',
-          'type': 'line',
-          'source': 'Durham_outline-azvjqv',
-          'source-layer': 'Durham_outline-azvjqv',
+          'id': 'Centerlines',
+          'type':'line',
+          'source': 'centrelines_4326-avpqvn',
+          'source-layer': 'centrelines_4326-avpqvn',
           'paint': {
-            'line-color': '#212F3C',
-            'line-width':4,
-            'line-blur':1,
-            'line-opacity':0.5
-          }
+            'line-color': '#F9F9F9',
+            'line-width': 2,
+            'line-blur': 1,
+            'line-opacity': 0.5
+          },
         })
 
         map.addLayer({
-          'id': '15 min or less',
+          'id': 'Corridor 1',
           'type':'fill',
-          'source': 'Durham2-6wy63w',
-          'source-layer': 'Durham2-6wy63w',
+          'source': 'Corridor_1_4326-34p40e',
+          'source-layer': 'Corridor_1_4326-34p40e',
+          'layout': {
+            		visibility: 'none'
+          	},
           'paint': {
             'fill-color': {
-              'property': 'because QGIS is dumb_45 to 59 min_norm',
+              'property': 'transport_count_1933',
               'type':'interval',
               'stops': [
-              [1, '#FFFFFF'],
-              [2, '#F4D03F'],
-              [3, '#F39C12'],
-              [4, '#CA6F1E'],
-              [5, '#A04000'],
-              [10, '#6E2C00'],
-              [20, '#6E2C00'],
-              [30, '#6E2C00'],
-              [40, '#6E2C00'],
-              [100, '#6E2C00'],
+              [0, '#ffffff'],
+              [25, '#ffffff'],
+              [50, '#ffffd9'],
+              [75, '#edf8b1'],
+              [100, '#c7e9b4'],
+              [125, '#7fcdbb'],
+              [150, '#41b6c4'],
+              [175, '#1d91c0'],
+              [200, '#225ea8'],
+              [225, '#253494'],
+              [250, '#081d58']
             ]},
-            'fill-opacity': 0.75,
-            'fill-outline-color': '#212F3C',
-          }
-        },'road-label-large', 'road-label-medium', 'road-label-small');
+            'fill-opacity': 0.65
+          },
+        })
 
         map.addLayer({
-          'id': '15 min or less_3d',
-          'type':'fill-extrusion',
-          'source': 'Durham2-6wy63w',
-          'source-layer': 'Durham2-6wy63w',
+          'id': 'Corridor 2',
+          'type':'fill',
+          'source': 'Corridor_2_4326-5t873k',
+          'source-layer': 'Corridor_2_4326-5t873k',
+          'layout': {
+            		visibility: 'none'
+          	},
           'paint': {
-            'fill-extrusion-height': {
-              'property': 'because QGIS is dumb_45 to 59 min_norm',
+            'fill-color': {
+              'property': 'transport_count_1933',
               'type':'interval',
               'stops': [
-              [1, 0],
-              [2, 200],
-              [3, 300],
-              [4, 400],
-              [5, 500],
-              [10, 1000],
-              [20, 2000],
-              [30, 3000],
-              [40, 4000],
-              [100, 10000],
+              [0, '#ffffff'],
+              [25, '#ffffff'],
+              [50, '#ffffd9'],
+              [75, '#edf8b1'],
+              [100, '#c7e9b4'],
+              [125, '#7fcdbb'],
+              [150, '#41b6c4'],
+              [175, '#1d91c0'],
+              [200, '#225ea8'],
+              [225, '#253494'],
+              [250, '#081d58']
             ]},
+            'fill-opacity': 0.65
+          },
+        })
 
-            'fill-extrusion-color': {
-              'property': 'because QGIS is dumb_45 to 59 min_norm',
+
+        map.addLayer({
+          'id': 'Corridor 3',
+          'type':'fill',
+          'source': 'Corridor_3_4326-48gylw',
+          'source-layer': 'Corridor_3_4326-48gylw',
+          'layout': {
+            		visibility: 'none'
+          	},
+          'paint': {
+            'fill-color': {
+              'property': 'transport_count_1933',
               'type':'interval',
               'stops': [
-              [1, '#FFFFFF'],
-              [2, '#F4D03F'],
-              [3, '#F39C12'],
-              [4, '#CA6F1E'],
-              [5, '#A04000'],
-              [10, '#6E2C00'],
-              [20, '#6E2C00'],
-              [30, '#6E2C00'],
-              [40, '#6E2C00'],
-              [100, '#6E2C00'],
+              [0, '#ffffff'],
+              [25, '#ffffff'],
+              [50, '#ffffd9'],
+              [75, '#edf8b1'],
+              [100, '#c7e9b4'],
+              [125, '#7fcdbb'],
+              [150, '#41b6c4'],
+              [175, '#1d91c0'],
+              [200, '#225ea8'],
+              [225, '#253494'],
+              [250, '#081d58']
             ]},
-            'fill-extrusion-opacity': 0.90,
-            'fill-extrusion-vertical-gradient': true,
-          }
-        },'road-label-large', 'road-label-medium', 'road-label-small');
+            'fill-opacity': 0.65
+          },
+        })
 
         map.addLayer({
-          'id': '15 to 29 min',
-          'type':'fill',
-          'layout': {
-            visibility: 'none'},
-          'source': 'Durham2-6wy63w',
-          'source-layer': 'Durham2-6wy63w',
+          'id': 'Corridor_1_outline',
+          'type':'line',
+          'source': 'Corridor_1_4326-46y869',
+          'source-layer': 'Corridor_1',
           'paint': {
-            'fill-color': {
-              'property': 'because QGIS is dumb_15 to 29 min_norm',
-              'type':'interval',
-              'stops': [
-              [10, '#DAF7A6'],
-              [20, '#FFC300'],
-              [30, '#FF5733'],
-              [40, '#C70039'],
-              [50, '#900C3F'],
-              [60, '#581845'],
-              [70, '#581845'],
-              [80, '#581845'],
-              [90, '#581845'],
-              [100, '#581845'],
-            ]}, 'fill-opacity': 0.75,
-          }
-        });
+            'line-color': '#FFFFFF',
+            'line-width': 2,
+            'line-blur': 1
+          },
+        })
 
-        map.addLayer({
-          'id': '30 to 44 min',
-          'type':'fill',
-          'layout': {
-            visibility: 'none'},
-          'source': 'Durham2-6wy63w',
-          'source-layer': 'Durham2-6wy63w',
-          'paint': {
-            'fill-color': {
-              'property': 'because QGIS is dumb_30 to 44 min_norm',
-              'type':'interval',
-              'stops': [
-              [10, '#DAF7A6'],
-              [20, '#FFC300'],
-              [30, '#FF5733'],
-              [40, '#C70039'],
-              [50, '#900C3F'],
-              [60, '#581845'],
-              [70, '#581845'],
-              [80, '#581845'],
-              [90, '#581845'],
-              [100, '#581845'],
-            ]}, 'fill-opacity': 0.75,
-          }
-        });
+      map.addLayer({
+        'id': 'Stations - Corridor 1',
+        'type':'circle',
+        'source': 'Corridor_1_stations-anhhl5',
+        'source-layer': 'Corridor_1_stations-anhhl5',
+        'layout': {
+              visibility: 'none'
+          },
+        'paint': {
+          'circle-color': '#FF2D00',
+          'circle-radius': 7,
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#FFFFFF'
+        },
+      })
 
-        map.addLayer({
-          'id': '45 to 59 min',
-          'type':'fill',
-          'layout': {
-            visibility: 'none'},
-          'source': 'Durham2-6wy63w',
-          'source-layer': 'Durham2-6wy63w',
-          'paint': {
-            'fill-color': {
-              'property': 'because QGIS is dumb_45 to 59 min_norm',
-              'type':'interval',
-              'stops': [
-              [10, '#DAF7A6'],
-              [20, '#FFC300'],
-              [30, '#FF5733'],
-              [40, '#C70039'],
-              [50, '#900C3F'],
-              [60, '#581845'],
-              [70, '#581845'],
-              [80, '#581845'],
-              [90, '#581845'],
-              [100, '#581845'],
-            ]}, 'fill-opacity': 0.75,
-          }
-        });
+      map.addLayer({
+        'id': 'Stations - Corridor 2',
+        'type':'circle',
+        'source': 'Corridor_2_stations-4vvyt6',
+        'source-layer': 'Corridor_2_stations-4vvyt6',
+        'layout': {
+              visibility: 'none'
+          },
+        'paint': {
+          'circle-color': '#77D112',
+          'circle-radius': 7,
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#FFFFFF'
+        },
+      })
 
-        map.addLayer({
-          'id': 'over 60 min',
-          'type':'fill',
-          'layout': {
-            visibility: 'none'},
-          'source': 'Durham2-6wy63w',
-          'source-layer': 'Durham2-6wy63w',
-          'paint': {
-            'fill-color': {
-              'property': 'because QGIS is dumb_60 minutes and over_norm',
-              'type':'interval',
-              'stops': [
-              [10, '#DAF7A6'],
-              [20, '#FFC300'],
-              [30, '#FF5733'],
-              [40, '#C70039'],
-              [50, '#900C3F'],
-              [60, '#581845'],
-              [70, '#581845'],
-              [80, '#581845'],
-              [90, '#581845'],
-              [100, '#581845'],
-            ]}, 'fill-opacity': 0.75,
-          }
-        });
+      map.addLayer({
+        'id': 'Stations - Corridor 3',
+        'type':'circle',
+        'source': 'Corridor_3_stations-4yo7oz',
+        'source-layer': 'Corridor_3_stations-4yo7oz',
+        'layout': {
+              visibility: 'none'
+          },
+        'paint': {
+          'circle-color': '#D500FF',
+          'circle-radius': 7,
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#FFFFFF'
+        },
+      })
+
+      map.addLayer({
+        'id': 'Hovers',
+        'type':'line',
+        'source': 'Corridors_merged-aldi4d',
+        'source-layer': 'Corridors_merged-aldi4d',
+        'paint': {
+          'line-color': '#F9F9F9',
+          'line-width': 5,
+          'line-blur': 2,
+          'line-opacity': 1
+        },
+      })
+  });
+
+//set the filter function for toggleableZoningLayerIds
+
+/* zoning categories popups*/
+map.on ('click', function (e){
+
+/* query the feature that is clicked*/
+var features = map.queryRenderedFeatures(e.point, { layers: ['Corridor 1','Corridor 2','Corridor 3']}); //THIS NEEDS TO BE THE ACTIVE LAYER
+
+/* if the queried features array has objects  - has length - then return then return*/
+if (!features.length){
+		return;}
+/* capture in a new variable the first feature clicked*/
+var feature = features[0]; //key to the interactive opacity change
+
+/* set a new popup object at the clicked point*/
+var popup = new mapboxgl.Popup()
+.setLngLat(map.unproject(e.point))
+/* dynamically create the html content of each popup based on concatenating pre-written html and certain attribute / property fields */
+.setHTML('<h3 class=Variable Title>'+feature.properties.transport_variable_1933+'</h3> <p class=Count><b>Number of people using this mode: </b>'+feature.properties.transport_count_1933+'</p> <p class=Count><b>Share of people using this mode: </b>'+Math.ceil(feature.properties.prop_commuters)+'%</p><p class=Variable><b>Variable: </b> 2016 Commuting Population by Transit</p>' )//set the click box html
+
+/* add popup to the map object*/
+.addTo(map);
+
+});
 
 
-      });
-  </script>
+/*set cursor style on hover for buildings*/
+map.on('mousemove', function (e) {
+  var features = map.queryRenderedFeatures(e.point, { layers: ['Corridor 1','Corridor 2','Corridor 3'] }); //THIS NEEDS TO BE THE ACTIVE LAYER
+  map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+  });
+
+  /*set DA highlight on hover*/
+  map.on('mousemove', function (e) {
+  	var hovFeatures = map.queryRenderedFeatures(e.point, {layers: ['Corridor 1','Corridor 2','Corridor 3']});
+  	if (hovFeatures.length) {
+  		map.setFilter('Hovers', ["==", "Census_da2016_dauid",hovFeatures[0].properties.Census_da2016_dauid]);}
+  	else {
+  		map.setFilter('Hovers', ["==", "Census_da2016_dauid", ""]);
+  		}
+  });
+
+  /*dynamically create buttons for each layer.*/
+var toggleableMapLayerIds = ["Corridor 1","Corridor 2","Corridor 3", "Stations - Corridor 1","Stations - Corridor 2","Stations - Corridor 3"];
+
+for (var i = 0; i < toggleableMapLayerIds.length; i++){
+  var id = toggleableMapLayerIds[i];
+  var link = document.createElement('a');
+  link.href = '#';
+  link.className = id;
+  link.textContent = id;
+
+  link.onclick = function (e) {
+  	var clickedLayer = this.textContent;
+  	e.preventDefault();
+  	e.stopPropagation();
+
+  	/*find out if the layer that the button references is visible or not. If not visible, on click make it visible and vice versa*/
+  	var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+  	if (visibility === 'visible') {
+  		map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+  		this.className = '';}
+
+  	else {
+  		this.className = clickedLayer;
+  		map.setLayoutProperty(clickedLayer, 'visibility','visible');
+  		};
+  	};
+
+
+    /*dynamically assign html to the "link" - the toggle button*/
+    var mapLayers = document.getElementById('Menu');
+    mapLayers.appendChild(link);
+};
+
+</script>
+
 </body>
 </html>
-
-
