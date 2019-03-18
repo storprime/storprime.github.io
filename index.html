@@ -102,7 +102,8 @@
       text-decoration: none;
       border-bottom: 1px solid rgba(0,0,0,0.25);
       text-align: center;
-      color: rgba(255,255,255,0.75);
+      color: #FFFFFF;
+      opacity: 0.75;
       z-index: 3;
       }
 
@@ -117,26 +118,18 @@
       font: bold;
       }
 
+#Menu a:active {
+      background-color: #FFFFFF;
+      opacity: 0.75;
+      color: #404040;
+      font: bold;
+      }
+
+
+
 /*zoning menu "buttons" colours. See toggle javascript functions below*/
-#Menu a.Corridor_1:active  {
-      background-color: #DEDEDE;
-      color: #ffffff;
-      }
 
-#Menu a.Corridor_2:active  {
-      background-color: #DEDEDE;
-      color: #ffffff;
-      }
 
-#Menu a.Corridor_3:active   {
-      background-color: #DEDEDE;
-      color: #ffffff;
-      }
-
-/*hover styles for toggle buttons*/
-#Menu a.active {
-      background: #DEDEDE;
-      }
 
 
 html .mapboxgl-ctrl-top-right {
@@ -184,7 +177,7 @@ html .mapboxgl-ctrl-group button {
       container: 'map', //container id
       style: 'mapbox://styles/storprime/cjrwm2mkv0d281fofa2ijq9cj', //new satellite image updated
       center: [-79.382749,43.650550],
-      zoom: 10, //starting zoom
+      zoom: 13, //starting zoom
       bearing: 0, // starting direction
       pitch: 0, //starting pitch
 
@@ -274,20 +267,20 @@ html .mapboxgl-ctrl-group button {
           	},
           'paint': {
             'fill-color': {
-              'property': 'transport_count_1933',
+              'property': 'count_1',
               'type':'interval',
               'stops': [
-              [0, '#ffffff'],
-              [25, '#ffffff'],
-              [50, '#ffffd9'],
-              [75, '#edf8b1'],
-              [100, '#c7e9b4'],
-              [125, '#7fcdbb'],
-              [150, '#41b6c4'],
-              [175, '#1d91c0'],
-              [200, '#225ea8'],
-              [225, '#253494'],
-              [250, '#081d58']
+                [0, '#ffffff'],
+                [250, '#f7f4f9'],
+                [500, '#e7e1ef'],
+                [750, '#d4b9da'],
+                [1000, '#c994c7'],
+                [1500, '#df65b0'],
+                [2000, '#e7298a'],
+                [3500, '#ce1256'],
+                [4000, '#980043'],
+                [4500, '#253494'],
+                [5000, '#2F0329']
             ]},
             'fill-opacity': 0.65
           },
@@ -303,20 +296,20 @@ html .mapboxgl-ctrl-group button {
           	},
           'paint': {
             'fill-color': {
-              'property': 'transport_count_1933',
+              'property': 'count_1',
               'type':'interval',
               'stops': [
               [0, '#ffffff'],
-              [25, '#ffffff'],
-              [50, '#ffffd9'],
-              [75, '#edf8b1'],
-              [100, '#c7e9b4'],
-              [125, '#7fcdbb'],
-              [150, '#41b6c4'],
-              [175, '#1d91c0'],
-              [200, '#225ea8'],
-              [225, '#253494'],
-              [250, '#081d58']
+              [250, '#f7f4f9'],
+              [500, '#e7e1ef'],
+              [750, '#d4b9da'],
+              [1000, '#c994c7'],
+              [1500, '#df65b0'],
+              [2000, '#e7298a'],
+              [3500, '#ce1256'],
+              [4000, '#980043'],
+              [4500, '#253494'],
+              [5000, '#2F0329']
             ]},
             'fill-opacity': 0.65
           },
@@ -333,20 +326,20 @@ html .mapboxgl-ctrl-group button {
           	},
           'paint': {
             'fill-color': {
-              'property': 'transport_count_1933',
+              'property': 'count_1',
               'type':'interval',
               'stops': [
-              [0, '#ffffff'],
-              [25, '#ffffff'],
-              [50, '#ffffd9'],
-              [75, '#edf8b1'],
-              [100, '#c7e9b4'],
-              [125, '#7fcdbb'],
-              [150, '#41b6c4'],
-              [175, '#1d91c0'],
-              [200, '#225ea8'],
-              [225, '#253494'],
-              [250, '#081d58']
+                [0, '#ffffff'],
+                [250, '#f7f4f9'],
+                [500, '#e7e1ef'],
+                [750, '#d4b9da'],
+                [1000, '#c994c7'],
+                [1500, '#df65b0'],
+                [2000, '#e7298a'],
+                [3500, '#ce1256'],
+                [4000, '#980043'],
+                [4500, '#253494'],
+                [5000, '#2F0329']
             ]},
             'fill-opacity': 0.65
           },
@@ -389,7 +382,7 @@ html .mapboxgl-ctrl-group button {
               visibility: 'none'
           },
         'paint': {
-          'circle-color': '#77D112',
+          'circle-color': '#FF2D00',
           'circle-radius': 7,
           'circle-stroke-width': 2,
           'circle-stroke-color': '#FFFFFF'
@@ -405,7 +398,7 @@ html .mapboxgl-ctrl-group button {
               visibility: 'none'
           },
         'paint': {
-          'circle-color': '#D500FF',
+          'circle-color': '#FF2D00',
           'circle-radius': 7,
           'circle-stroke-width': 2,
           'circle-stroke-color': '#FFFFFF'
@@ -444,8 +437,21 @@ var feature = features[0]; //key to the interactive opacity change
 var popup = new mapboxgl.Popup()
 .setLngLat(map.unproject(e.point))
 /* dynamically create the html content of each popup based on concatenating pre-written html and certain attribute / property fields */
-.setHTML('<h3 class=Variable Title>'+feature.properties.transport_variable_1933+'</h3> <p class=Count><b>Number of people using this mode: </b>'+feature.properties.transport_count_1933+'</p> <p class=Count><b>Share of people using this mode: </b>'+Math.ceil(feature.properties.prop_commuters)+'%</p><p class=Variable><b>Variable: </b> 2016 Commuting Population by Transit</p>' )//set the click box html
+.setHTML('<h3 class=Variable Title> Area Statistics</h3><p>--------</p><p class=Count><b>Population: </b>'+feature.properties.count_1+
+'</p>'
++'<p class=Count><b>Public Transit: </b>'+feature.properties.count_1933+' ('+Math.ceil(feature.properties.v1933_pr_of_commuters)+'%)</p>'
++'<p class=Count><b>Walked: </b>'+feature.properties.count_1934+' ('+Math.ceil(feature.properties.v1934_pr_of_commuters)+'%)</p>'
++'<p class=Count><b>Bicycle: </b>'+feature.properties.count_1935+' ('+Math.ceil(feature.properties.v1935_pr_of_commuters)+'%)</p>'
++'<p class=Count><b>Driving: </b>'+feature.properties.count_1931+' ('+Math.ceil(feature.properties.v1931_pr_of_commuters)+
+'%)</p> <p>--------</p> <p class=Count><b>Total Dwellings: </b>'+feature.properties.count_4+'</p>'
++'<p class=Count><b>Detached: </b>'+feature.properties.count_42+' ('+Math.ceil(feature.properties.v42_pr_of_total)+'%)</p>'
++'<p class=Count><b>Large Apartments: </b>'+feature.properties.count_43+' ('+Math.ceil(feature.properties.v43_pr_of_total)+'%)</p>'
++'<p class=Count><b>Semi-detached: </b>'+feature.properties.count_45+' ('+Math.ceil(feature.properties.v45_pr_of_total)+'%)</p>'
++'<p class=Count><b>Row-house: </b>'+feature.properties.count_46+' ('+Math.ceil(feature.properties.v46_pr_of_total)+'%)</p>'
++'<p class=Count><b>Duplex Apartments: </b>'+feature.properties.count_47+' ('+Math.ceil(feature.properties.v47_pr_of_total)+'%)</p>'
 
+)
+//set the click box html
 /* add popup to the map object*/
 .addTo(map);
 
@@ -462,14 +468,14 @@ map.on('mousemove', function (e) {
   map.on('mousemove', function (e) {
   	var hovFeatures = map.queryRenderedFeatures(e.point, {layers: ['Corridor 1','Corridor 2','Corridor 3']});
   	if (hovFeatures.length) {
-  		map.setFilter('Hovers', ["==", "Census_da2016_dauid",hovFeatures[0].properties.Census_da2016_dauid]);}
+  		map.setFilter('Hovers', ["==", "Census_da2016_dauid",hovFeatures[0].properties.dauid]);}
   	else {
   		map.setFilter('Hovers', ["==", "Census_da2016_dauid", ""]);
   		}
   });
 
   /*dynamically create buttons for each layer.*/
-var toggleableMapLayerIds = ["Corridor 1","Corridor 2","Corridor 3", "Stations - Corridor 1","Stations - Corridor 2","Stations - Corridor 3"];
+var toggleableMapLayerIds = ['Corridor 1','Corridor 2','Corridor 3', "Stations - Corridor 1","Stations - Corridor 2","Stations - Corridor 3"];
 
 for (var i = 0; i < toggleableMapLayerIds.length; i++){
   var id = toggleableMapLayerIds[i];
