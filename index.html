@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8'/>
-  <title>SFU / Urban Strategies - Active Transportation Survey Results</title>
+  <title>DRAFT-CSF Interface</title>
   <meta name = 'viewport' content='initial-scale=1, maximum-scale=1,user-scalable=no' />
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
@@ -11,8 +11,6 @@
 </head>
 <body>
 <!--map object -->
-
-<!--zoning navigation menu -->
 <nav id='Menu'>
 	<p id="Menu-Explanation"> <b>Layers</b> <br> Click buttons to toggle on/off</p>
 </nav>
@@ -102,11 +100,7 @@
       font: bold;
       }
 /*zoning menu "buttons" colours. See toggle javascript functions below*/
-#Menu a.Combination of Cycling and Public Transit  {
-      background-color: #DEDEDE;
-      color: #ffffff;
-      }
-#Menu a.Active Transportation all the way  {
+#Menu a.Pop-change  {
       background-color: #DEDEDE;
       color: #ffffff;
       }
@@ -152,9 +146,9 @@ html .mapboxgl-ctrl-group button {
     mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcnByaW1lIiwiYSI6InR6YWtmU2MifQ.mzm3c3_RSxKKc5MgUe0Fig';
     var map = new mapboxgl.Map({
       container: 'map', //container id
-      style: 'mapbox://styles/storprime/cjrwm2mkv0d281fofa2ijq9cj', //new satellite image updated
-      center: [-122.917432,49.278018],
-      zoom: 14, //starting zoom
+      style: 'mapbox://styles/storprime/cjdalgxvfayh22rnuqvpq2gaq', //new satellite image updated
+      center: [-79.459,43.807],
+      zoom: 11, //starting zoom
       bearing: 0, // starting direction
       pitch: 0, //starting pitch
     });
@@ -168,66 +162,91 @@ html .mapboxgl-ctrl-group button {
           'position': [45,45,45,],
         });
         //add sources
-        map.addSource('Combination_Cycling_and_Publi-dtn92o', {
+        map.addSource('Pop_Change_weighted-75kmmv', {
           type: "vector",
-          url: "mapbox://storprime.1czgylnn"
+          url: "mapbox://storprime.av9c7wif"
         });
 
-        map.addSource('Active_Transportation-4i24hx', {
+        map.addSource('GGH_Lower_Tier_Municipalities-7tfoce', {
           type: "vector",
-          url: "mapbox://storprime.2wmqmen9"
+          url: "mapbox://storprime.amfeem9r"
         });
 
-        map.addSource('Hovers-b8dflc', {
+        map.addSource('GGH_Upper_Tier_Municipalities-0no6kp', {
           type: "vector",
-          url: "mapbox://storprime.29umw5fx"
-        });
+          url: "mapbox://storprime.a9d493uz"
+        });//cylinders
+
 
 
 
 
         map.addLayer({
-          'id': 'Combination of Cycling and Public Transit',
-          'type':'line',
-          'source': 'Combination_Cycling_and_Publi-dtn92o',
-          'source-layer': 'Combination_Cycling_and_Publi-dtn92o',
+          'id': 'Growth (by CT)',
+          'type':'fill',
+          'source': 'Pop_Change_weighted-75kmmv',
+          'source-layer': 'Pop_Change_weighted-75kmmv',
           'layout': {
             		visibility: 'none'
           	},
           'paint': {
-            'line-color':  '#FFB100',
-            'line-width': 3
+            'fill-color': {
+              'property': 'DensityWeighted_Value',
+              'type':'interval',
+              'stops': [
+              [-39, '#F0DFFF'],
+              [0, '#e4f4b6'],
+              [5, '#c9e99f'],
+              [10, '#a9dc8e'],
+              [15, '#88cd80'],
+              [20, '#68be71'],
+              [25, '#48af60'],
+              [50, '#0c4b26'],
+              [80, '#158244'],
+              [100, '#00271e']
+            ]},
+            'fill-opacity': 0.75
           },
-        })
+        },'water')
 
-        map.addLayer({
-          'id': 'Active Transportation all the way',
-          'type':'line',
-          'source': 'Active_Transportation-4i24hx',
-          'source-layer': 'Active_Transportation-4i24hx',
-          'layout': {
-            		visibility: 'none'
-          	},
-          'paint': {
-            'line-color': '#FF5900',
-            'line-width': 3
-          },
-        })
+      map.addLayer({
+        'id': 'Hovers',
+        'type':'line',
+        'source': 'Pop_Change_weighted-75kmmv',
+        'source-layer': 'Pop_Change_weighted-75kmmv',
+        'paint': {
+          'line-color': '#656565',
+          'line-width': 5,
+          'line-blur': 2,
+          'line-opacity': 1
+        },
+      },)
 
-        map.addLayer({
-          'id': 'Hovers',
-          'type':'line',
-          'source': 'Hovers-b8dflc',
-          'source-layer': 'Hovers-b8dflc',
-          'layout': {
-            		visibility: 'none'
-          	},
-          'paint': {
-            'line-color': '#FFFFFF',
-            'line-width': 6,
-            'line-opacity': 0.25
-          },
-        })
+      map.addLayer({
+        'id': 'GGH-Lower',
+        'type':'line',
+        'source': 'GGH_Lower_Tier_Municipalities-7tfoce',
+        'source-layer': 'GGH_Lower_Tier_Municipalities-7tfoce',
+        'paint': {
+          'line-color': '#656565',
+          'line-width': 2,
+          'line-blur': 3,
+          'line-opacity': 1
+        },
+      },)
+
+      map.addLayer({
+        'id': 'GGH-Upper',
+        'type':'line',
+        'source': 'GGH_Upper_Tier_Municipalities-0no6kp',
+        'source-layer': 'GGH_Upper_Tier_Municipalities-0no6kp',
+        'paint': {
+          'line-color': '#656565',
+          'line-width': 3,
+          'line-blur': 6,
+          'line-opacity': 1
+        },
+      },)
 
 
   });
@@ -235,41 +254,38 @@ html .mapboxgl-ctrl-group button {
 /* zoning categories popups*/
 map.on ('click', function (e){
 /* query the feature that is clicked*/
-var features = map.queryRenderedFeatures(e.point, { layers: ['Combination of Cycling and Public Transit','Active Transportation all the way']}); //THIS NEEDS TO BE THE ACTIVE LAYER
-/* if the queried features array has objects  - has length - then return then return*/
-if (!features.length){
-		return;}
-/* capture in a new variable the first feature clicked*/
-var feature = features[0]; //key to the interactive opacity change
-/* set a new popup object at the clicked point*/
-var popup = new mapboxgl.Popup()
-.setLngLat(map.unproject(e.point))
-/* dynamically create the html content of each popup based on concatenating pre-written html and certain attribute / property fields */
-.setHTML('<h3 class=Variable Title>Are you a?:</h3> <p class=value>'+feature.properties.usertype+'</p>'
-+'<h3 class=Variable Title>Comment</h3> <p class=value>'+feature.properties.routes_why+'</p>'
-+'<h3 class=Variable Title>How do you get to campus?:</h3> <p class=value>'+feature.properties.Transportation_Mode+'</p>'
-+'<h3 class=Variable Title>When do you arrive on campus?</h3> <p class=value>'+feature.properties.Arrival_Time+'</p>'
-+'<h3 class=Variable Title>When do you leave campus?</h3> <p class=value>'+feature.properties.Departure_Time+'</p>'
-)//set the click box html
-/* add popup to the map object*/
-.addTo(map);
-});
+  var features = map.queryRenderedFeatures(e.point, { layers: ['Growth (by CT)']}); //THIS NEEDS TO BE THE ACTIVE LAYER
+  /* if the queried features array has objects  - has length - then return then return*/
+  var fcoord = e.lngLat
+  map.flyTo({center: fcoord, zoom: 11.5})
+  if (!features.length){
+		  return;}
+    /* capture in a new variable the first feature clicked*/
+    var feature = features[0]; //key to the interactive opacity change
+    /* set a new popup object at the clicked point*/
+    var popup = new mapboxgl.Popup()
+    .setLngLat(map.unproject(e.point))
+    /* dynamically create the html content of each popup based on concatenating pre-written html and certain attribute / property fields */
+    .setHTML('<h3 class=Variable Title>Population Change</h3> <p class=Count><b>Change: </b>'+feature.properties.Pop_difference+'</p>' )//set the click box html
+    /* add popup to the map object*/
+    .addTo(map);
+  });
 /*set cursor style on hover for buildings*/
 map.on('mousemove', function (e) {
-  var features = map.queryRenderedFeatures(e.point, { layers: ['Combination of Cycling and Public Transit','Active Transportation all the way'] }); //THIS NEEDS TO BE THE ACTIVE LAYER
+  var features = map.queryRenderedFeatures(e.point, { layers: ['Growth (by CT)'] }); //THIS NEEDS TO BE THE ACTIVE LAYER
   map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
   });
   /*set DA highlight on hover*/
   map.on('mousemove', function (e) {
-  	var hovFeatures = map.queryRenderedFeatures(e.point, {layers: ['Hovers']});
+  	var hovFeatures = map.queryRenderedFeatures(e.point, {layers: ['Growth (by CT)']});
   	if (hovFeatures.length) {
-  		map.setFilter('Hovers', ["==", "Source",hovFeatures[0].properties.Source]);}
+  		map.setFilter('Hovers', ["==", "ctuid",hovFeatures[0].properties.ctuid]);}
   	else {
-  		map.setFilter('Hovers', ["==", "Source", ""]);
+  		map.setFilter('Hovers', ["==", "ctuid", ""]);
   		}
   });
   /*dynamically create buttons for each layer.*/
-var toggleableMapLayerIds = ['Combination of Cycling and Public Transit','Active Transportation all the way'];
+var toggleableMapLayerIds = ['Growth (by CT)'];
 for (var i = 0; i < toggleableMapLayerIds.length; i++){
   var id = toggleableMapLayerIds[i];
   var link = document.createElement('a');
@@ -298,3 +314,4 @@ for (var i = 0; i < toggleableMapLayerIds.length; i++){
 
 </body>
 </html>
+
