@@ -266,7 +266,7 @@ map.on ('click', function (e){
     var popup = new mapboxgl.Popup()
     .setLngLat(map.unproject(e.point))
     /* dynamically create the html content of each popup based on concatenating pre-written html and certain attribute / property fields */
-    .setHTML('<h3 class=Variable Title>Population Change</h3> <p class=Count><b>Change: </b>'+feature.properties.Pop_difference+'</p>' )//set the click box html
+    .setHTML('<h3 class=Variable Title>Population Change</h3> <p class=Count><b>Change (2011-2016): </b>'+feature.properties.Pop_difference+'</p>' )//set the click box html
     /* add popup to the map object*/
     .addTo(map);
   });
@@ -314,4 +314,3 @@ for (var i = 0; i < toggleableMapLayerIds.length; i++){
 
 </body>
 </html>
-
