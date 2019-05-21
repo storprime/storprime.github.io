@@ -257,7 +257,7 @@ map.on ('click', function (e){
   var features = map.queryRenderedFeatures(e.point, { layers: ['Growth (by CT)']}); //THIS NEEDS TO BE THE ACTIVE LAYER
   /* if the queried features array has objects  - has length - then return then return*/
   var fcoord = e.lngLat
-  map.flyTo({center: fcoord, zoom: 11.5})
+  /* map.flyTo({center: fcoord, zoom: 11.5}) */
   if (!features.length){
 		  return;}
     /* capture in a new variable the first feature clicked*/
