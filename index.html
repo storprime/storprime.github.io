@@ -3728,7 +3728,6 @@ $("input[type=radio][id=btn1]").click(function(){
         var penetr21 = ((region21/torontoPopulation)*100).toFixed(2);//population
 
         var regetr1 = ((themetotal1/themetotal1)*100).toFixed(2);
-        console.log("regetr1:"+regetr1)
         var regetr2 = ((themetotal2/themetotal2)*100).toFixed(2);
         var regetr3 = ((themetotal3/themetotal3)*100).toFixed(2);
         var regetr4 = ((themetotal4/(themetotal3))*100).toFixed(2);
@@ -3738,7 +3737,6 @@ $("input[type=radio][id=btn1]").click(function(){
         var regetr8 = ((themetotal8/themetotal2)*100).toFixed(2);
         var regetr9 = ((themetotal9/themetotal2)*100).toFixed(2);
         var regetr10 = ((themetotal10/themetotal2)*100).toFixed(2);
-        console.log("regetr10:"+regetr10)
         var regetr11 = ((themetotal11/themetotal2)*100).toFixed(2);
         var regetr12 = ((themetotal12/themetotal2)*100).toFixed(2);
         var regetr13 = ((themetotal13/themetotal2)*100).toFixed(2);
@@ -3861,7 +3859,7 @@ $("input[type=radio][id=btn1]").click(function(){
 $("input[type=radio][id=btn2]").click(function(){
       var yorkPopulation = 1109909;
       var yorkHouseholds = 357085;
-      var yorkDwellings = 357085;
+      var yorkDwellings = 449355;
       map.setLayoutProperty("York-gen", 'visibility', 'visible')
       yorkclear();
       map.flyTo({center: york_coord, zoom: 10, pitch: 45, bearing: 25})
