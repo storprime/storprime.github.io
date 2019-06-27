@@ -14,13 +14,59 @@
 </head>
 <body>
 
+<div class="wash" id="intro">
+  <div class="introcontainer">
+    <p class="introtitle" id="pretitle">Welcome to the Urban Strategies</p>
+    <p class="introtitle" id="apptitle">Community Profile Engine</p>
+    <p class="introtitle" id="introtext">This is an Urban Strategies-built app that opens up data from the Canadian census in four Ontario regional municipalities. <br>
+      Select a region of interest, and then select a theme you would like to display on the map. Then, click on individual areas to generate a summary profile</p>
+  <div class="intro-button-container">
+   <!--enter the application -->
+   <button class="lrg-button" id="tutorial">Tutorial</button>
+   <button class="lrg-button" id="proceed">Start</button>
+   <p class="introtitle" id="disclaimer"> Note: this site is not yet optimized for mobile devices</p>
+  </div>
+ </div>
+</div>
+
+
+
 <!--side panel -->
 <div class="sidenav" id="detailmenu">
+
+  <div class="radiocontainer" id="regions">
+    <p id="title2">Select a Region</p>
+      <!--choose another region -->
+      <form action="#">
+        <p class="region">
+            <input type="radio" name="region" id="btn1">
+            <label for="btn1">Toronto</label>
+
+        </p>
+        <p class="region">
+            <input type="radio" name="region" id="btn2">
+            <label for="btn2">York Region</label>
+        </p>
+        <p class="region">
+            <input type="radio" name="region" id="btn3">
+            <label for="btn3">Peel Region</label>
+        </p>
+        <p class="region">
+            <input type="radio" name="region" id="btn4">
+            <label for="btn4">Durham Region</label>
+        </p>
+      </form>
+   </div>
+
+     <!--choose another region -->
+     <button class="toggles" id="restart">Clear Map</button>
+
+
   <!--statistics -->
   <div class="colcontainer" id="diagnostic">
   <form action="#">
     <div class="buttons">
-      <p class="colhead">Select a Layer</p>
+      <p id="title2">Select a Layer</p>
       <p class="layer">
       <input type="radio" name="layer" id="#lay1">
       <label for="#lay1">Population</label>
@@ -33,6 +79,7 @@
       <input type="radio" name="layer" id="#lay3">
       <label for="#lay3">Units</label>
       </p>
+      <p class="vartitle">Unit typologies</p>
       <p class="layer">
       <input type="radio" name="layer" id="#lay4">
       <label for="#lay4">Low-rise units</label>
@@ -45,6 +92,7 @@
       <input type="radio" name="layer" id="#lay6">
       <label for="#lay6">High-rise units</label>
       </p>
+      <p class="vartitle">Unit sizes</p>
       <p class="layer">
       <input type="radio" name="layer" id="#lay7">
       <label for="#lay7">No bedrooms units</label>
@@ -66,13 +114,7 @@
       <label for="#lay11">Four bedroom units</label>
       </p>
       <p class="layer">
-      <input type="radio" name="layer" id="#lay12">
-      <label for="#lay12">One person per room</label>
-      </p>
-      <p class="layer">
-      <input type="radio" name="layer" id="#lay13">
-      <label for="#lay13">Two persons per room</label>
-      </p>
+      <p class="vartitle">Household size</p>
       <p class="layer">
       <input type="radio" name="layer" id="#lay14">
       <label for="#lay14">One person Households</label>
@@ -93,6 +135,7 @@
       <input type="radio" name="layer" id="#lay18" >
       <label for="#lay18">Five person Households</label>
       </p>
+      <p class="vartitle">Mode of transportation (commuters)</p>
       <p class="layer">
       <input type="radio" name="layer" id="#lay19">
       <label for="#lay19">Commuters - Drivers</label>
@@ -113,69 +156,75 @@
       <p class="diag" id="Total1"></p>
       <p class="diag" id="Total2"></p>
       <p class="diag" id="Total3"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="Total4"></p>
       <p class="diag" id="Total5"></p>
       <p class="diag" id="Total6"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="Total7"></p>
       <p class="diag" id="Total8"></p>
       <p class="diag" id="Total9"></p>
       <p class="diag" id="Total10"></p>
       <p class="diag" id="Total11"></p>
-      <p class="diag" id="Total12"></p>
-      <p class="diag" id="Total13"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="Total14"></p>
       <p class="diag" id="Total15"></p>
       <p class="diag" id="Total16"></p>
       <p class="diag" id="Total17"></p>
       <p class="diag" id="Total18"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="Total19"></p>
       <p class="diag" id="Total20"></p>
       <p class="diag" id="Total21"></p>
     </div>
     <div class="col">
-      <p class="colhead" id="Penetration">Regional Benchmark</p>
+      <p class="colhead" id="Penetration">Share</p>
       <p class="diag" id="RegionPen1"></p>
       <p class="diag" id="RegionPen2"></p>
       <p class="diag" id="RegionPen3"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="RegionPen4"></p>
       <p class="diag" id="RegionPen5"></p>
       <p class="diag" id="RegionPen6"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="RegionPen7"></p>
       <p class="diag" id="RegionPen8"></p>
       <p class="diag" id="RegionPen9"></p>
       <p class="diag" id="RegionPen10"></p>
       <p class="diag" id="RegionPen11"></p>
-      <p class="diag" id="RegionPen12"></p>
-      <p class="diag" id="RegionPen13"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="RegionPen14"></p>
       <p class="diag" id="RegionPen15"></p>
       <p class="diag" id="RegionPen16"></p>
       <p class="diag" id="RegionPen17"></p>
       <p class="diag" id="RegionPen18"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="RegionPen19"></p>
       <p class="diag" id="RegionPen20"></p>
       <p class="diag" id="RegionPen21"></p>
     </div>
     <div class="col">
-      <p class="colhead" id="Representation">Share</p>
+      <p class="colhead" id="Representation">Benchmark</p>
       <p class="diag" id="GroupPen1"></p>
       <p class="diag" id="GroupPen2"></p>
       <p class="diag" id="GroupPen3"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="GroupPen4"></p>
       <p class="diag" id="GroupPen5"></p>
       <p class="diag" id="GroupPen6"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="GroupPen7"></p>
       <p class="diag" id="GroupPen8"></p>
       <p class="diag" id="GroupPen9"></p>
       <p class="diag" id="GroupPen10"></p>
       <p class="diag" id="GroupPen11"></p>
-      <p class="diag" id="GroupPen12"></p>
-      <p class="diag" id="GroupPen13"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="GroupPen14"></p>
       <p class="diag" id="GroupPen15"></p>
       <p class="diag" id="GroupPen16"></p>
       <p class="diag" id="GroupPen17"></p>
       <p class="diag" id="GroupPen18"></p>
+      <p class="diag" id='coljump'>---</p>
       <p class="diag" id="GroupPen19"></p>
       <p class="diag" id="GroupPen20"></p>
       <p class="diag" id="GroupPen21"></p>
@@ -183,34 +232,8 @@
 </div>
 
 <!--clear the statistics -->
-<button class="toggles" id="clear">Clear Statistics</button>
+<button class="toggles" id="clear">Clear Selection</button>
 
-<div class="radiocontainer" id="regions">
-  <p id="title2">Select a Region</p>
-    <!--choose another region -->
-    <form action="#">
-      <p class="region">
-          <input type="radio" name="region" id="btn1">
-          <label for="btn1">Toronto</label>
-
-      </p>
-      <p class="region">
-          <input type="radio" name="region" id="btn2">
-          <label for="btn2">York Region</label>
-      </p>
-      <p class="region">
-          <input type="radio" name="region" id="btn3">
-          <label for="btn3">Peel Region</label>
-      </p>
-      <p class="region">
-          <input type="radio" name="region" id="btn4">
-          <label for="btn4">Durham Region</label>
-      </p>
-    </form>
- </div>
-
-   <!--choose another region -->
-   <button class="toggles" id="restart">Clear Map</button>
 
    <!--hide the panel -->
    <div class="hideside">
@@ -257,9 +280,22 @@ body {
 
 #title2 {
   left: 20px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   z-index: 1;
+}
+
+#coljump {
+  color: #F0F0F0;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.vartitle {
+  font-weight: bold;
+  font-size: 14px;
+  padding-top: 10px;
+
 }
 
 .hideside {
@@ -278,6 +314,66 @@ body {
   font-size: 36px;
   z-index: 1;
   display:block;
+}
+
+.wash {
+  width: 100%;
+  height: 100%;
+  background-color: #F0F0F0;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display:block;
+}
+
+.introcontainer {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 300px;
+  left: 35%;
+  display:inline-block;
+}
+
+.intro-button-container {
+  display:inline-block;
+  padding-top: 30px;
+
+}
+
+.lrg-button {
+width: 100px;
+height: 50px;
+background-color: #F0F0F0;
+border-style: solid;
+border-color: #6A6A6A;
+font-size: 20px;
+font-weight: 20px;
+
+}
+
+.lrg-button:hover {
+background-color: #C3C3C3;
+}
+
+#pretitle {
+  font-size: 20px;
+}
+
+#apptitle {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#introtext {
+  padding-top: 30px;
+  font-size: 16px;
+}
+
+#disclaimer {
+  padding-top: 30px;
+  font-size: 12px;
 }
 
 /*layer button styles*/
@@ -398,9 +494,8 @@ body {
   display: table;
   width: 100%;
   padding-left: 20px;
-  top: 50px;
+  top: 180px;
   position: relative;
-  top: 50px;
 }
 
 .radiocontainer {
@@ -440,7 +535,7 @@ body {
 }
 
 #clear {
-  top: 50px;
+  top: 190px;
   left: 5%;
   text-align: center;
 }
@@ -449,17 +544,18 @@ body {
   display: table-cell;
 }
 
-.colhead {
+.colhead  {
   font-weight: bold;
+  font-size: 14px;
 }
 
 .diag .variable .colhead {
-  text-align: center;
+  text-align: left;
   border-width: 1px;
   border-style: none;
   border-color: grey;
   padding:none;
-  right: 25px;
+  right: 40px;
 }
 
 .mapboxgl-ctrl-icon {
@@ -487,7 +583,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcnByaW1lIiwiYSI6InR6YWtmU2MifQ.mzm3c3_RSx
 var map = new mapboxgl.Map({
   container: 'map', //container id
   style: 'mapbox://styles/storprime/cjdalgxvfayh22rnuqvpq2gaq',
-  center: [-79.459,43.807],
+  center: [-79.019871,43.839352],
   zoom: 9, //starting zoom
   bearing: 0, // starting direction
   pitch: 0, //starting pitch
@@ -496,18 +592,27 @@ var map = new mapboxgl.Map({
 //hard coded variables
 var toronto_coord = [-79.372458, 43.635469]
 var york_coord =    [-79.309697, 43.900075]
-var durham_coord =  [-78.935924, 43.885845]
+var durham_coord =  [-78.687524, 43.903606]
 var peel_coord =    [-79.602378, 43.584678]
 
 
 //begin jquery functions
 $( document ).ready(function() {
-  $(".showside").hide();
+//$(".wash").hide(0);
+$(".showside").hide(0);
+$("#detailmenu").hide(0);
+$("#map").hide(0);
+$("#proceed").click(function(){
+  $("#map").fadeIn(500);
+  $("#detailmenu").fadeIn(500);
+  $(".wash").hide();
+})
 
   //on any show of the map, load
  map.on('style.load', function() {
         // zoom and rotation controls for the <map>
-          map.addControl (new mapboxgl.NavigationControl());
+          document.getElementById('map').style.cursor = "pointer";
+          map.addControl (new mapboxgl.NavigationControl(),'top-left');
           map.setLight({
             'anchor':'map',
             'color':'white',
@@ -523,24 +628,24 @@ $( document ).ready(function() {
           });
 
 
-          map.addSource('Peel-2rnh8f', {
+          map.addSource('Peel-133r08', {
             type: "vector",
-            url: "mapbox://storprime.12cf73mu"
+            url: "mapbox://storprime.aa48h68g"
           });
 
-          map.addSource('Toronto-0lktes', {
+          map.addSource('Toronto-4j070p', {
             type:"vector",
-            url: "mapbox://storprime.8eequao5"
+            url: "mapbox://storprime.98u9a55v"
           });
 
-          map.addSource('Durham-2rlp4p', {
+          map.addSource('Durham-d6npoo', {
             type:"vector",
-            url: "mapbox://storprime.2m4ddqgs"
+            url: "mapbox://storprime.7yjarn1o"
           });
 
-          map.addSource('York-cuz7cl', {
+          map.addSource('York-8edenn', {
             type:"vector",
-            url: "mapbox://storprime.0eue791m"
+            url: "mapbox://storprime.59vfjdmt"
           });
 
           map.addLayer({
@@ -561,8 +666,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-gen',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'visible'
                   },
@@ -575,8 +680,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer1',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -598,8 +703,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer2',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -621,8 +726,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer3',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -644,8 +749,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer4',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -667,8 +772,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer5',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -690,8 +795,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer6',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -713,8 +818,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer7',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -736,8 +841,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer8',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -759,8 +864,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer9',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -782,8 +887,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer10',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -805,8 +910,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer11',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -828,8 +933,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer12',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -851,8 +956,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer13',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -874,8 +979,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer14',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -897,8 +1002,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer15',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -920,8 +1025,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer16',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -943,8 +1048,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer17',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -966,8 +1071,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer18',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -989,8 +1094,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer19',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1012,8 +1117,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer20',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1035,8 +1140,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Toronto-layer21',
                 'type':'fill',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1059,40 +1164,40 @@ $( document ).ready(function() {
           map.addLayer({
                'id': 'Toronto-outline',
                 'type':'line',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
-                      visibility: 'visible'
+                      visibility: 'none'
                   },
                 'paint': {
                   'line-color': '#656565',
-                  'line-width': 0.25,
-                  'line-blur': 0.5,
+                  'line-width': 4,
+                  'line-blur': 2,
                   'line-opacity': 1
                 },
               });
           map.addLayer({
                'id': 'Toronto-hover',
                 'type':'line',
-                'source': 'Toronto-0lktes',
-                'source-layer': 'Toronto-0lktes',
+                'source': 'Toronto-4j070p',
+                'source-layer': 'Toronto-4j070p',
                 'layout': {
-                      visibility: 'visible'
+                      visibility: 'none'
                   },
                 'paint': {
                   'line-color': '#656565',
-                  'line-width': 0.25,
-                  'line-blur': 5,
+                  'line-width': 5,
+                  'line-blur': 2,
                   'line-opacity': 1
                 },
               });
           map.addLayer({
               'id': 'Toronto-select',
               'type':'fill',
-              'source': 'Toronto-0lktes',
-              'source-layer': 'Toronto-0lktes',
+              'source': 'Toronto-4j070p',
+              'source-layer': 'Toronto-4j070p',
               'layout': {
-                    visibility: 'visible'
+                    visibility: 'none'
               },
               'paint': {
                 'fill-color': '#656565',
@@ -1104,8 +1209,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-gen',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'visible'
                   },
@@ -1119,8 +1224,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer1',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1129,12 +1234,12 @@ $( document ).ready(function() {
                       'property': 'population',
                       'type':'interval',
                       'stops': [
-                        [0.05, '#fef9e7'],
-                        [0.1, '#fcf3cf'],
-                        [0.15, '#f9e79f'],
-                        [0.2, '#f7dc6f'],
-                        [0.5, '#f4d03f'],
-                        [0.8, '#f1c40f']
+                        [100, '#fef9e7'],
+                        [250, '#fcf3cf'],
+                        [500, '#f9e79f'],
+                        [750, '#f7dc6f'],
+                        [1000, '#f4d03f'],
+                        [1500, '#f1c40f']
                     ]},
                   'fill-opacity': 0.75
                 },
@@ -1142,8 +1247,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer2',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1152,12 +1257,12 @@ $( document ).ready(function() {
                       'property': 'households',
                       'type':'interval',
                       'stops': [
-                        [0.05, '#fef9e7'],
-                        [0.1, '#fcf3cf'],
-                        [0.15, '#f9e79f'],
-                        [0.2, '#f7dc6f'],
-                        [0.5, '#f4d03f'],
-                        [0.8, '#f1c40f']
+                        [100, '#fef9e7'],
+                        [250, '#fcf3cf'],
+                        [500, '#f9e79f'],
+                        [750, '#f7dc6f'],
+                        [1000, '#f4d03f'],
+                        [1500, '#f1c40f']
                     ]},
                   'fill-opacity': 0.75
                 },
@@ -1165,8 +1270,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer3',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1175,12 +1280,12 @@ $( document ).ready(function() {
                       'property': 'dwellings',
                       'type':'interval',
                       'stops': [
-                        [0.05, '#fef9e7'],
-                        [0.1, '#fcf3cf'],
-                        [0.15, '#f9e79f'],
-                        [0.2, '#f7dc6f'],
-                        [0.5, '#f4d03f'],
-                        [0.8, '#f1c40f']
+                        [100, '#fef9e7'],
+                        [250, '#fcf3cf'],
+                        [500, '#f9e79f'],
+                        [750, '#f7dc6f'],
+                        [1000, '#f4d03f'],
+                        [1500, '#f1c40f']
                     ]},
                   'fill-opacity': 0.75
                 },
@@ -1188,8 +1293,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer4',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1211,8 +1316,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer5',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1234,8 +1339,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer6',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1257,8 +1362,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer7',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1280,8 +1385,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer8',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1303,8 +1408,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer9',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1326,8 +1431,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer10',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1349,8 +1454,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer11',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1372,8 +1477,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer12',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1395,8 +1500,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer13',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1418,8 +1523,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer14',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1441,8 +1546,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer15',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1464,8 +1569,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer16',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1487,8 +1592,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer17',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1510,8 +1615,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer18',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1533,8 +1638,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer19',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1556,8 +1661,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer20',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1579,8 +1684,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'York-layer21',
                 'type':'fill',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1604,14 +1709,14 @@ $( document ).ready(function() {
           map.addLayer({
                'id': 'York-outline',
                 'type':'line',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
-                      visibility: 'visible'
+                      visibility: 'none'
                   },
                 'paint': {
                   'line-color': '#656565',
-                  'line-width': 0.25,
+                  'line-width': 4,
                   'line-blur': 0.5,
                   'line-opacity': 1
                 },
@@ -1619,29 +1724,30 @@ $( document ).ready(function() {
           map.addLayer({
                'id': 'York-hover',
                 'type':'line',
-                'source': 'York-cuz7cl',
-                'source-layer': 'York-cuz7cl',
+                'source': 'York-8edenn',
+                'source-layer': 'York-8edenn',
                 'layout': {
-                      visibility: 'visible'
+                      visibility: 'none'
                   },
                 'paint': {
                   'line-color': '#656565',
-                  'line-width': 0.25,
-                  'line-blur': 5,
+                  'line-width': 5,
+                  'line-blur': 2,
                   'line-opacity': 1
                 },
               });;
           map.addLayer({
               'id': 'York-select',
               'type':'fill',
-              'source': 'York-cuz7cl',
-              'source-layer': 'York-cuz7cl',
+              'source': 'York-8edenn',
+              'source-layer': 'York-8edenn',
               'layout': {
-                    visibility: 'visible'
+                    visibility: 'none'
               },
               'paint': {
                 'fill-color': '#656565',
                 'fill-opacity': 0.5
+
               },
             });
 
@@ -1649,8 +1755,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-gen',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1663,8 +1769,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer1',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1673,12 +1779,12 @@ $( document ).ready(function() {
                       'property': 'population',
                       'type':'interval',
                       'stops': [
-                        [0.05, '#fef9e7'],
-                        [0.1, '#fcf3cf'],
-                        [0.15, '#f9e79f'],
-                        [0.2, '#f7dc6f'],
-                        [0.5, '#f4d03f'],
-                        [0.8, '#f1c40f']
+                        [100, '#fef9e7'],
+                        [250, '#fcf3cf'],
+                        [500, '#f9e79f'],
+                        [750, '#f7dc6f'],
+                        [1000, '#f4d03f'],
+                        [1500, '#f1c40f']
                     ]},
                   'fill-opacity': 0.75
                 },
@@ -1686,8 +1792,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer2',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1696,12 +1802,12 @@ $( document ).ready(function() {
                       'property': 'households',
                       'type':'interval',
                       'stops': [
-                        [0.05, '#fef9e7'],
-                        [0.1, '#fcf3cf'],
-                        [0.15, '#f9e79f'],
-                        [0.2, '#f7dc6f'],
-                        [0.5, '#f4d03f'],
-                        [0.8, '#f1c40f']
+                        [100, '#fef9e7'],
+                        [250, '#fcf3cf'],
+                        [500, '#f9e79f'],
+                        [750, '#f7dc6f'],
+                        [1000, '#f4d03f'],
+                        [1500, '#f1c40f']
                     ]},
                   'fill-opacity': 0.75
                 },
@@ -1709,8 +1815,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer3',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1719,12 +1825,12 @@ $( document ).ready(function() {
                       'property': 'dwellings',
                       'type':'interval',
                       'stops': [
-                        [0.05, '#fef9e7'],
-                        [0.1, '#fcf3cf'],
-                        [0.15, '#f9e79f'],
-                        [0.2, '#f7dc6f'],
-                        [0.5, '#f4d03f'],
-                        [0.8, '#f1c40f']
+                        [100, '#fef9e7'],
+                        [250, '#fcf3cf'],
+                        [500, '#f9e79f'],
+                        [750, '#f7dc6f'],
+                        [1000, '#f4d03f'],
+                        [1500, '#f1c40f']
                     ]},
                   'fill-opacity': 0.75
                 },
@@ -1732,14 +1838,14 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer4',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
                   'paint': {
                     'fill-color': {
-                      'property': 'low-rise_NORM',
+                      'property': 'low_rise_NORM',
                       'type':'interval',
                       'stops': [
                         [0.05, '#fef9e7'],
@@ -1755,14 +1861,14 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer5',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
                   'paint': {
                     'fill-color': {
-                      'property': 'mid-rise_NORM',
+                      'property': 'mid_rise_NORM',
                       'type':'interval',
                       'stops': [
                         [0.05, '#fef9e7'],
@@ -1778,14 +1884,14 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer6',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
                   'paint': {
                     'fill-color': {
-                      'property': 'high-rise_NORM',
+                      'property': 'high_rise_NORM',
                       'type':'interval',
                       'stops': [
                         [0.05, '#fef9e7'],
@@ -1801,8 +1907,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer7',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1824,8 +1930,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer8',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1847,8 +1953,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer9',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1870,8 +1976,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer10',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1893,8 +1999,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer11',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1916,8 +2022,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer12',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1939,8 +2045,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer13',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1962,8 +2068,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer14',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -1985,8 +2091,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer15',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2008,8 +2114,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer16',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2031,8 +2137,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer17',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2054,8 +2160,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer18',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2077,8 +2183,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer19',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2100,8 +2206,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer20',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2123,8 +2229,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Durham-layer21',
                 'type':'fill',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2147,14 +2253,14 @@ $( document ).ready(function() {
           map.addLayer({
                'id': 'Durham-outline',
                 'type':'line',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
-                      visibility: 'visible'
+                      visibility: 'none'
                   },
                 'paint': {
                   'line-color': '#656565',
-                  'line-width': 0.25,
+                  'line-width': 4,
                   'line-blur': 0.5,
                   'line-opacity': 1
                 },
@@ -2162,25 +2268,25 @@ $( document ).ready(function() {
           map.addLayer({
                'id': 'Durham-hover',
                 'type':'line',
-                'source': 'Durham-2rlp4p',
-                'source-layer': 'Durham-2rlp4p',
+                'source': 'Durham-d6npoo',
+                'source-layer': 'Durham-d6npoo',
                 'layout': {
-                      visibility: 'visible'
+                      visibility: 'none'
                   },
                 'paint': {
                   'line-color': '#656565',
-                  'line-width': 0.25,
-                  'line-blur': 5,
+                  'line-width': 5,
+                  'line-blur': 2,
                   'line-opacity': 1
                 },
               });;
           map.addLayer({
               'id': 'Durham-select',
               'type':'fill',
-              'source': 'Durham-2rlp4p',
-              'source-layer': 'Durham-2rlp4p',
+              'source': 'Durham-d6npoo',
+              'source-layer': 'Durham-d6npoo',
               'layout': {
-                    visibility: 'visible'
+                    visibility: 'none'
               },
               'paint': {
                 'fill-color': '#656565',
@@ -2192,8 +2298,8 @@ $( document ).ready(function() {
           map.addLayer({
                   'id': 'Peel-gen',
                   'type':'fill',
-                  'source': 'Peel-2rnh8f',
-                  'source-layer': 'Peel-2rnh8f',
+                  'source': 'Peel-133r08',
+                  'source-layer': 'Peel-133r08',
                   'layout': {
                       	visibility: 'visible'
                     },
@@ -2206,8 +2312,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer1',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2216,12 +2322,12 @@ $( document ).ready(function() {
                       'property': 'population',
                       'type':'interval',
                       'stops': [
-                        [0.05, '#fef9e7'],
-                        [0.1, '#fcf3cf'],
-                        [0.15, '#f9e79f'],
-                        [0.2, '#f7dc6f'],
-                        [0.5, '#f4d03f'],
-                        [0.8, '#f1c40f']
+                        [100, '#fef9e7'],
+                        [250, '#fcf3cf'],
+                        [500, '#f9e79f'],
+                        [750, '#f7dc6f'],
+                        [1000, '#f4d03f'],
+                        [1500, '#f1c40f']
                     ]},
                   'fill-opacity': 0.75
                 },
@@ -2229,8 +2335,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer2',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2239,12 +2345,12 @@ $( document ).ready(function() {
                       'property': 'households',
                       'type':'interval',
                       'stops': [
-                        [0.05, '#fef9e7'],
-                        [0.1, '#fcf3cf'],
-                        [0.15, '#f9e79f'],
-                        [0.2, '#f7dc6f'],
-                        [0.5, '#f4d03f'],
-                        [0.8, '#f1c40f']
+                        [100, '#fef9e7'],
+                        [250, '#fcf3cf'],
+                        [500, '#f9e79f'],
+                        [750, '#f7dc6f'],
+                        [1000, '#f4d03f'],
+                        [1500, '#f1c40f']
                     ]},
                   'fill-opacity': 0.75
                 },
@@ -2252,8 +2358,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer3',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2262,12 +2368,12 @@ $( document ).ready(function() {
                       'property': 'dwellings',
                       'type':'interval',
                       'stops': [
-                        [0.05, '#fef9e7'],
-                        [0.1, '#fcf3cf'],
-                        [0.15, '#f9e79f'],
-                        [0.2, '#f7dc6f'],
-                        [0.5, '#f4d03f'],
-                        [0.8, '#f1c40f']
+                        [100, '#fef9e7'],
+                        [250, '#fcf3cf'],
+                        [500, '#f9e79f'],
+                        [750, '#f7dc6f'],
+                        [1000, '#f4d03f'],
+                        [1500, '#f1c40f']
                     ]},
                   'fill-opacity': 0.75
                 },
@@ -2275,8 +2381,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer4',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2298,8 +2404,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer5',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2321,8 +2427,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer6',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2344,8 +2450,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer7',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2367,8 +2473,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer8',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2390,8 +2496,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer9',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2413,8 +2519,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer10',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2436,8 +2542,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer11',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2459,8 +2565,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer12',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2482,8 +2588,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer13',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2505,8 +2611,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer14',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2528,8 +2634,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer15',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2551,8 +2657,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer16',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2574,8 +2680,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer17',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2597,8 +2703,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer18',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2620,8 +2726,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer19',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2643,8 +2749,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer20',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2666,8 +2772,8 @@ $( document ).ready(function() {
           map.addLayer({
                 'id': 'Peel-layer21',
                 'type':'fill',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
                       visibility: 'none'
                   },
@@ -2691,40 +2797,40 @@ $( document ).ready(function() {
           map.addLayer({
                'id': 'Peel-outline',
                 'type':'line',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
-                      visibility: 'visible'
+                      visibility: 'none'
                   },
                 'paint': {
                   'line-color': '#656565',
-                  'line-width': 0.25,
-                  'line-blur': 0.5,
+                  'line-width': 4,
+                  'line-blur': 2,
                   'line-opacity': 1
                 },
               });
           map.addLayer({
                'id': 'Peel-hover',
                 'type':'line',
-                'source': 'Peel-2rnh8f',
-                'source-layer': 'Peel-2rnh8f',
+                'source': 'Peel-133r08',
+                'source-layer': 'Peel-133r08',
                 'layout': {
-                      visibility: 'visible'
+                      visibility: 'none'
                   },
                 'paint': {
                   'line-color': '#656565',
-                  'line-width': 0.25,
-                  'line-blur': 5,
+                  'line-width': 5,
+                  'line-blur': 2,
                   'line-opacity': 1
                 },
               });
           map.addLayer({
               'id': 'Peel-select',
               'type':'fill',
-              'source': 'Peel-2rnh8f',
-              'source-layer': 'Peel-2rnh8f',
+              'source': 'Peel-133r08',
+              'source-layer': 'Peel-133r08',
               'layout': {
-                    visibility: 'visible'
+                    visibility: 'none'
               },
               'paint': {
                 'fill-color': '#656565',
@@ -2746,6 +2852,7 @@ $( document ).ready(function() {
        map.setLayoutProperty("Toronto-gen", 'visibility', 'none');
        map.setLayoutProperty("Toronto-select", 'visibility', 'none');
        map.setLayoutProperty("Toronto-outline", 'visibility', 'none');
+       map.setLayoutProperty("Toronto-hover", 'visibility', 'none');
        map.setLayoutProperty("Toronto-layer1", 'visibility', 'none');
        map.setLayoutProperty("Toronto-layer2", 'visibility', 'none');
        map.setLayoutProperty("Toronto-layer3", 'visibility', 'none');
@@ -2772,6 +2879,7 @@ $( document ).ready(function() {
        map.setLayoutProperty("York-gen", 'visibility', 'none')
        map.setLayoutProperty("York-select", 'visibility', 'none')
        map.setLayoutProperty("York-outline", 'visibility', 'none')
+       map.setLayoutProperty("York-hover", 'visibility', 'none');
        map.setLayoutProperty("York-layer1", 'visibility', 'none');
        map.setLayoutProperty("York-layer2", 'visibility', 'none');
        map.setLayoutProperty("York-layer3", 'visibility', 'none');
@@ -2798,6 +2906,7 @@ $( document ).ready(function() {
        map.setLayoutProperty("Durham-gen", 'visibility', 'none');
        map.setLayoutProperty("Durham-select", 'visibility', 'none');
        map.setLayoutProperty("Durham-outline", 'visibility', 'none');
+       map.setLayoutProperty("Durham-hover", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer1", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer2", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer3", 'visibility', 'none');
@@ -2831,7 +2940,8 @@ $( document ).ready(function() {
      if (peel_visibility === 'visible') {
        map.setLayoutProperty("Peel-gen", 'visibility', 'none')
        map.setLayoutProperty("Peel-select", 'visibility', 'none')
-       map.setLayoutProperty("Peel-outline", 'visibility', 'none')
+       map.setLayoutProperty("Peel-outline", 'visibility', 'none');
+       map.setLayoutProperty("Peel-hover", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer1", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer2", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer3", 'visibility', 'none');
@@ -2857,7 +2967,8 @@ $( document ).ready(function() {
      if (york_visibility === 'visible') {
        map.setLayoutProperty("York-gen", 'visibility', 'none')
        map.setLayoutProperty("York-select", 'visibility', 'none')
-       map.setLayoutProperty("York-outline", 'visibility', 'none')
+       map.setLayoutProperty("York-outline", 'visibility', 'none');
+       map.setLayoutProperty("York-hover", 'visibility', 'none');
        map.setLayoutProperty("York-layer1", 'visibility', 'none');
        map.setLayoutProperty("York-layer2", 'visibility', 'none');
        map.setLayoutProperty("York-layer3", 'visibility', 'none');
@@ -2883,7 +2994,8 @@ $( document ).ready(function() {
      if (durham_visibility === 'visible') {
        map.setLayoutProperty("Durham-gen", 'visibility', 'none')
        map.setLayoutProperty("Durham-select", 'visibility', 'none')
-       map.setLayoutProperty("Durham-outline", 'visibility', 'none')
+       map.setLayoutProperty("Durham-outline", 'visibility', 'none');
+       map.setLayoutProperty("Durham-hover", 'visibility', 'none')
        map.setLayoutProperty("Durham-layer1", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer2", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer3", 'visibility', 'none');
@@ -2917,7 +3029,8 @@ $( document ).ready(function() {
      if (peel_visibility === 'visible') {
        map.setLayoutProperty("Peel-gen", 'visibility', 'none')
        map.setLayoutProperty("Peel-select", 'visibility', 'none')
-       map.setLayoutProperty("Peel-outline", 'visibility', 'none')
+       map.setLayoutProperty("Peel-outline", 'visibility', 'none');
+       map.setLayoutProperty("Peel-hover", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer1", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer2", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer3", 'visibility', 'none');
@@ -2943,7 +3056,8 @@ $( document ).ready(function() {
      if (toronto_visibility === 'visible') {
        map.setLayoutProperty("Toronto-gen", 'visibility', 'none')
        map.setLayoutProperty("Toronto-select", 'visibility', 'none')
-       map.setLayoutProperty("Toronto-outline", 'visibility', 'none')
+       map.setLayoutProperty("Toronto-outline", 'visibility', 'none');
+       map.setLayoutProperty("Toronto-hover", 'visibility', 'none');
        map.setLayoutProperty("Toronto-layer1", 'visibility', 'none');
        map.setLayoutProperty("Toronto-layer2", 'visibility', 'none');
        map.setLayoutProperty("Toronto-layer3", 'visibility', 'none');
@@ -2969,7 +3083,8 @@ $( document ).ready(function() {
      if (durham_visibility === 'visible') {
        map.setLayoutProperty("Durham-gen", 'visibility', 'none')
        map.setLayoutProperty("Durham-select", 'visibility', 'none')
-       map.setLayoutProperty("Durham-outline", 'visibility', 'none')
+       map.setLayoutProperty("Durham-outline", 'visibility', 'none');
+       map.setLayoutProperty("Durham-hover", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer1", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer2", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer3", 'visibility', 'none');
@@ -3003,7 +3118,8 @@ $( document ).ready(function() {
      if (peel_visibility === 'visible') {
        map.setLayoutProperty("Peel-gen", 'visibility', 'none')
        map.setLayoutProperty("Peel-select", 'visibility', 'none')
-       map.setLayoutProperty("Peel-outline", 'visibility', 'none')
+       map.setLayoutProperty("Peel-outline", 'visibility', 'none');
+       map.setLayoutProperty("Peel-hover", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer1", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer2", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer3", 'visibility', 'none');
@@ -3030,6 +3146,7 @@ $( document ).ready(function() {
        map.setLayoutProperty("York-gen", 'visibility', 'none')
        map.setLayoutProperty("York-select", 'visibility', 'none')
        map.setLayoutProperty("York-outline", 'visibility', 'none')
+       map.setLayoutProperty("York-hover", 'visibility', 'none');
        map.setLayoutProperty("York-layer1", 'visibility', 'none');
        map.setLayoutProperty("York-layer2", 'visibility', 'none');
        map.setLayoutProperty("York-layer3", 'visibility', 'none');
@@ -3055,7 +3172,8 @@ $( document ).ready(function() {
      if (toronto_visibility === 'visible') {
        map.setLayoutProperty("Toronto-gen", 'visibility', 'none')
        map.setLayoutProperty("Toronto-select", 'visibility', 'none')
-       map.setLayoutProperty("Toronto-outline", 'visibility', 'none')
+       map.setLayoutProperty("Toronto-outline", 'visibility', 'none');
+       map.setLayoutProperty("Toronto-hover", 'visibility', 'none');
        map.setLayoutProperty("Toronto-layer1", 'visibility', 'none');
        map.setLayoutProperty("Toronto-layer2", 'visibility', 'none');
        map.setLayoutProperty("Toronto-layer3", 'visibility', 'none');
@@ -3089,7 +3207,8 @@ $( document ).ready(function() {
    if (toronto_visibility === 'visible') {
      map.setLayoutProperty("Toronto-gen", 'visibility', 'none')
      map.setLayoutProperty("Toronto-select", 'visibility', 'none')
-     map.setLayoutProperty("Toronto-outline", 'visibility', 'none')
+     map.setLayoutProperty("Toronto-outline", 'visibility', 'none');
+     map.setLayoutProperty("Toronto-hover", 'visibility', 'none');
      map.setLayoutProperty("Toronto-layer1", 'visibility', 'none');
      map.setLayoutProperty("Toronto-layer2", 'visibility', 'none');
      map.setLayoutProperty("Toronto-layer3", 'visibility', 'none');
@@ -3116,7 +3235,8 @@ $( document ).ready(function() {
      if (peel_visibility === 'visible') {
        map.setLayoutProperty("Peel-gen", 'visibility', 'none')
        map.setLayoutProperty("Peel-select", 'visibility', 'none')
-       map.setLayoutProperty("Peel-outline", 'visibility', 'none')
+       map.setLayoutProperty("Peel-outline", 'visibility', 'none');
+       map.setLayoutProperty("Peel-hover", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer1", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer2", 'visibility', 'none');
        map.setLayoutProperty("Peel-layer3", 'visibility', 'none');
@@ -3142,7 +3262,8 @@ $( document ).ready(function() {
      if (york_visibility === 'visible') {
        map.setLayoutProperty("York-gen", 'visibility', 'none')
        map.setLayoutProperty("York-select", 'visibility', 'none')
-       map.setLayoutProperty("York-outline", 'visibility', 'none')
+       map.setLayoutProperty("York-outline", 'visibility', 'none');
+       map.setLayoutProperty("York-hover", 'visibility', 'none');
        map.setLayoutProperty("York-layer1", 'visibility', 'none');
        map.setLayoutProperty("York-layer2", 'visibility', 'none');
        map.setLayoutProperty("York-layer3", 'visibility', 'none');
@@ -3168,7 +3289,8 @@ $( document ).ready(function() {
      if (durham_visibility === 'visible') {
        map.setLayoutProperty("Durham-gen", 'visibility', 'none')
        map.setLayoutProperty("Durham-select", 'visibility', 'none')
-       map.setLayoutProperty("Durham-outline", 'visibility', 'none')
+       map.setLayoutProperty("Durham-outline", 'visibility', 'none');
+       map.setLayoutProperty("Durham-hover", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer1", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer2", 'visibility', 'none');
        map.setLayoutProperty("Durham-layer3", 'visibility', 'none');
@@ -3320,7 +3442,7 @@ var toggle = ["#lay1","#lay2","#lay3","#lay4","#lay5","#lay6","#lay7","#lay8","#
       for (d = 0; d < torontolayersWithoutCurrent.length; d++) {
         map.setLayoutProperty(String(torontolayersWithoutCurrent[d]), 'visibility', 'none');
       }
-      console.log(torontolayersWithoutCurrent)
+      console.log("These layers have been turned off:"+torontolayersWithoutCurrent)
     }
     if ($("input[type=radio][id=btn2]").prop("checked") == true) {
       //close all other layers
@@ -3332,7 +3454,7 @@ var toggle = ["#lay1","#lay2","#lay3","#lay4","#lay5","#lay6","#lay7","#lay8","#
       for (d = 0; d < yorklayersWithoutCurrent.length; d++) {
         map.setLayoutProperty(String(yorklayersWithoutCurrent[d]), 'visibility', 'none');
       }
-      console.log(yorklayersWithoutCurrent)
+      console.log("These layers have been turned off:"+yorklayersWithoutCurrent)
     }
     if ($("input[type=radio][id=btn3]").prop("checked") == true) {
       var peelactive = String(peellayers[radioindex])
@@ -3342,7 +3464,7 @@ var toggle = ["#lay1","#lay2","#lay3","#lay4","#lay5","#lay6","#lay7","#lay8","#
       for (d = 0; d < peellayersWithoutCurrent.length; d++) {
         map.setLayoutProperty(String(peellayersWithoutCurrent[d]), 'visibility', 'none');
       }
-      console.log(peellayersWithoutCurrent)
+      console.log("These layers have been turned off:"+peellayersWithoutCurrent)
     }
     if ($("input[type=radio][id=btn4]").prop("checked") == true) {
       var durhamactive = String(durhamlayers[radioindex])
@@ -3352,7 +3474,8 @@ var toggle = ["#lay1","#lay2","#lay3","#lay4","#lay5","#lay6","#lay7","#lay8","#
       for (d = 0; d < durhamlayersWithoutCurrent.length; d++) {
         map.setLayoutProperty(String(durhamlayersWithoutCurrent[d]), 'visibility', 'none');
       }
-      console.log(durhamlayersWithoutCurrent)
+      console.log("These layers have been turned off:"+durhamlayersWithoutCurrent)
+      console.log("This layer has been turned on:"+durhamactive)
     }
   });
 
@@ -3364,7 +3487,7 @@ var toggle = ["#lay1","#lay2","#lay3","#lay4","#lay5","#lay6","#lay7","#lay8","#
      }
     var toronto_visibility = map.getLayoutProperty("Toronto-gen", 'visibility')
     if (toronto_visibility === 'none') {
-      map.getLayoutProperty("Toronto-gen", 'visibility', 'visible')
+      map.setLayoutProperty("Toronto-gen", 'visibility', 'visible')
       console.log("The toronto gen layer is on")
     };
   });
@@ -3387,7 +3510,7 @@ var toggle = ["#lay1","#lay2","#lay3","#lay4","#lay5","#lay6","#lay7","#lay8","#
     var peel_visibility = map.getLayoutProperty("Peel-gen", 'visibility')
     if (peel_visibility === 'none') {
       console.log("The peel gen layer is on")
-      map.getLayoutProperty("Peel-gen", 'visibility', 'visible')
+      map.setLayoutProperty("Peel-gen", 'visibility', 'visible')
     };
   });
   $("input[type=radio][id=btn4]").click(function(){
@@ -3397,7 +3520,7 @@ var toggle = ["#lay1","#lay2","#lay3","#lay4","#lay5","#lay6","#lay7","#lay8","#
     }
     var durham_visibility = map.getLayoutProperty("Durham-gen", 'visibility')
     if (durham_visibility === 'none') {
-      map.getLayoutProperty("Durham-gen", 'visibility', 'visible')
+      map.setLayoutProperty("Durham-gen", 'visibility', 'visible')
       console.log("The durham gen layer is on")
     };
   });
@@ -3405,6 +3528,10 @@ var toggle = ["#lay1","#lay2","#lay3","#lay4","#lay5","#lay6","#lay7","#lay8","#
 
 
 $("input[type=radio][id=btn1]").click(function(){
+  var torontoDwellings = 1462275;
+  var torontoPopulation = 2731571;
+  var torontoHouseholds = 1112930;
+
   map.setLayoutProperty("Toronto-gen", 'visibility', 'visible')
   torontoclear();
   map.flyTo({center: toronto_coord, zoom: 13, bearing: 40, pitch: 45 })
@@ -3430,6 +3557,16 @@ $("input[type=radio][id=btn1]").click(function(){
   var queriednumbers20 = []
   var queriednumbers21 = []
   var activeids = []
+
+  map.on('mousemove', function (e) {
+      var hovFeatures = map.queryRenderedFeatures(e.point, {layers: ['Toronto-gen']});
+      if (hovFeatures.length) {
+        map.setFilter(['Toronto-hover'], ["==", "dauid",hovFeatures[0].properties.dauid])
+      }
+      else {
+        map.setFilter(['Toronto-hover'], ["==", "dauid", ""]);
+      };
+  });
 
   map.on ('click', function (e){
   // query the feature that is clicked
@@ -3462,9 +3599,9 @@ $("input[type=radio][id=btn1]").click(function(){
       var queriednumber19 = dashape.properties.commute_driver;
       var queriednumber20 = dashape.properties.commute_public_transit;
       var queriednumber21 = dashape.properties.commute_active;
-      var region1 = dashape.properties.population_total_uppertier;
-      var region2 = dashape.properties.household_total_uppertier;
-      var region3 = dashape.properties.dwellings_total_uppertier;
+      var region1 = torontoPopulation;
+      var region2 = torontoHouseholds;
+      var region3 = torontoDwellings;
       var region4 = dashape.properties.low_rise_regional;
       var region5 = dashape.properties.mid_rise_regional;
       var region6 = dashape.properties.high_rise_regional;
@@ -3515,27 +3652,27 @@ $("input[type=radio][id=btn1]").click(function(){
         else if (activeids.includes(id)===true) {
           ind = activeids.indexOf(id)
           activeids.splice(ind,1);
-          queriednumbers1.push(queriednumber1);
-          queriednumbers2.push(queriednumber2);
-          queriednumbers3.push(queriednumber3);
-          queriednumbers4.push(queriednumber4);
-          queriednumbers5.push(queriednumber5);
-          queriednumbers6.push(queriednumber6);
-          queriednumbers7.push(queriednumber7);
-          queriednumbers8.push(queriednumber8);
-          queriednumbers9.push(queriednumber9);
-          queriednumbers10.push(queriednumber10);
-          queriednumbers11.push(queriednumber11);
-          queriednumbers12.push(queriednumber12);
-          queriednumbers13.push(queriednumber13);
-          queriednumbers14.push(queriednumber14);
-          queriednumbers15.push(queriednumber15);
-          queriednumbers16.push(queriednumber16);
-          queriednumbers17.push(queriednumber17);
-          queriednumbers18.push(queriednumber18);
-          queriednumbers19.push(queriednumber19);
-          queriednumbers20.push(queriednumber20);
-          queriednumbers21.push(queriednumber21);
+          queriednumbers1.splice(ind,1);
+          queriednumbers2.splice(ind,1);
+          queriednumbers3.splice(ind,1);
+          queriednumbers4.splice(ind,1);
+          queriednumbers5.splice(ind,1);
+          queriednumbers6.splice(ind,1);
+          queriednumbers7.splice(ind,1);
+          queriednumbers8.splice(ind,1);
+          queriednumbers9.splice(ind,1);
+          queriednumbers10.splice(ind,1);
+          queriednumbers11.splice(ind,1);
+          queriednumbers12.splice(ind,1);
+          queriednumbers13.splice(ind,1);
+          queriednumbers14.splice(ind,1);
+          queriednumbers15.splice(ind,1);
+          queriednumbers16.splice(ind,1);
+          queriednumbers17.splice(ind,1);
+          queriednumbers18.splice(ind,1);
+          queriednumbers19.splice(ind,1);
+          queriednumbers20.splice(ind,1);
+          queriednumbers21.splice(ind,1);
           let filter = ['match', ['get', 'dauid'], activeids, true, false]
           map.setFilter("Toronto-select",filter)
           map.setLayoutProperty("Toronto-select", 'visibility', 'visible')
@@ -3568,39 +3705,40 @@ $("input[type=radio][id=btn1]").click(function(){
         var themetotal21 = queriednumbers21.reduce(add);
 
         //dynamically calculate the group percentage
-        var penetr1 = ((region1/2731571)*100).toFixed(2);//population
-        var penetr2 = ((region2/1112930)*100).toFixed(2);//households
-        var penetr3 = ((region3/1179057)*100).toFixed(2);//dwellings
-        var penetr4 = ((region4/1112930)*100).toFixed(2);//households
-        var penetr5 = ((region5/1112930)*100).toFixed(2);//households
-        var penetr6 = ((region6/1112930)*100).toFixed(2);//households
-        var penetr7 = ((region7/1112930)*100).toFixed(2);//households
-        var penetr8 = ((region8/1112930)*100).toFixed(2);//households
-        var penetr9 = ((region9/1112930)*100).toFixed(2);//households
-        var penetr10 = ((region10/1112930)*100).toFixed(2);//households
-        var penetr11 = ((region11/1112930)*100).toFixed(2);//households
-        var penetr12 = ((region12/1112930)*100).toFixed(2);//households
-        var penetr13 = ((region13/1112930)*100).toFixed(2);//households
-        var penetr14 = ((region14/1112930)*100).toFixed(2);//households
-        var penetr15 = ((region15/1112930)*100).toFixed(2);//households
-        var penetr16 = ((region16/1112930)*100).toFixed(2);//households
-        var penetr17 = ((region17/1112930)*100).toFixed(2);//households
-        var penetr18 = ((region18/1112930)*100).toFixed(2);//households
-        var penetr19 = ((region19/2731571)*100).toFixed(2);//population
-        var penetr20 = ((region20/2731571)*100).toFixed(2);//population
-        var penetr21 = ((region21/2731571)*100).toFixed(2);//population
+        var penetr1 = ((region1/torontoPopulation)*100).toFixed(2);//population
+        var penetr2 = ((region2/torontoHouseholds)*100).toFixed(2);//households
+        var penetr3 = ((region3/torontoDwellings)*100).toFixed(2);//dwellings
+        var penetr4 = ((region4/torontoDwellings)*100).toFixed(2);//households
+        var penetr5 = ((region5/torontoDwellings)*100).toFixed(2);//households
+        var penetr6 = ((region6/torontoDwellings)*100).toFixed(2);//households
+        var penetr7 = ((region7/torontoHouseholds)*100).toFixed(2);//households
+        var penetr8 = ((region8/torontoHouseholds)*100).toFixed(2);//households
+        var penetr9 = ((region9/torontoHouseholds)*100).toFixed(2);//households
+        var penetr10 = ((region10/torontoHouseholds)*100).toFixed(2);//households
+        var penetr11 = ((region11/torontoHouseholds)*100).toFixed(2);//households
+        var penetr12 = ((region12/torontoHouseholds)*100).toFixed(2);//households
+        var penetr13 = ((region13/torontoHouseholds)*100).toFixed(2);//households
+        var penetr14 = ((region14/torontoHouseholds)*100).toFixed(2);//households
+        var penetr15 = ((region15/torontoHouseholds)*100).toFixed(2);//households
+        var penetr16 = ((region16/torontoHouseholds)*100).toFixed(2);//households
+        var penetr17 = ((region17/torontoHouseholds)*100).toFixed(2);//households
+        var penetr18 = ((region18/torontoHouseholds)*100).toFixed(2);//households
+        var penetr19 = ((region19/torontoPopulation)*100).toFixed(2);//population
+        var penetr20 = ((region20/torontoPopulation)*100).toFixed(2);//population
+        var penetr21 = ((region21/torontoPopulation)*100).toFixed(2);//population
 
-        //dynamically calculate the selection percentage
         var regetr1 = ((themetotal1/themetotal1)*100).toFixed(2);
+        console.log("regetr1:"+regetr1)
         var regetr2 = ((themetotal2/themetotal2)*100).toFixed(2);
         var regetr3 = ((themetotal3/themetotal3)*100).toFixed(2);
-        var regetr4 = ((themetotal3/themetotal2)*100).toFixed(2);
-        var regetr5 = ((themetotal5/themetotal2)*100).toFixed(2);
-        var regetr6 = ((themetotal6/themetotal2)*100).toFixed(2);
+        var regetr4 = ((themetotal4/(themetotal3))*100).toFixed(2);
+        var regetr5 = ((themetotal5/(themetotal3))*100).toFixed(2);
+        var regetr6 = ((themetotal6/(themetotal3))*100).toFixed(2);
         var regetr7 = ((themetotal7/themetotal2)*100).toFixed(2);
         var regetr8 = ((themetotal8/themetotal2)*100).toFixed(2);
         var regetr9 = ((themetotal9/themetotal2)*100).toFixed(2);
         var regetr10 = ((themetotal10/themetotal2)*100).toFixed(2);
+        console.log("regetr10:"+regetr10)
         var regetr11 = ((themetotal11/themetotal2)*100).toFixed(2);
         var regetr12 = ((themetotal12/themetotal2)*100).toFixed(2);
         var regetr13 = ((themetotal13/themetotal2)*100).toFixed(2);
@@ -3683,16 +3821,6 @@ $("input[type=radio][id=btn1]").click(function(){
       });
 
 
-  map.on('mousemove', function (e) {
-      var hovFeatures = map.queryRenderedFeatures(e.point, {layers: ['Toronto-gen']});
-      if (hovFeatures.length) {
-        map.setFilter(['Toronto-hover'], ["==", "dauid",hovFeatures[0].properties.dauid])
-      }
-      else {
-        map.setFilter(['Toronto-hover'], ["==", "dauid", ""]);
-      };
-  });
-
   //reset variables
   function resetstats() {
     queriednumbers1.length = 0;
@@ -3731,6 +3859,9 @@ $("input[type=radio][id=btn1]").click(function(){
   });
 
 $("input[type=radio][id=btn2]").click(function(){
+      var yorkPopulation = 1109909;
+      var yorkHouseholds = 357085;
+      var yorkDwellings = 357085;
       map.setLayoutProperty("York-gen", 'visibility', 'visible')
       yorkclear();
       map.flyTo({center: york_coord, zoom: 10, pitch: 45, bearing: 25})
@@ -3788,9 +3919,9 @@ $("input[type=radio][id=btn2]").click(function(){
         var queriednumber19 = dashape.properties.commute_driver;
         var queriednumber20 = dashape.properties.commute_public_transit;
         var queriednumber21 = dashape.properties.commute_active;
-        var region1 = dashape.properties.population_total_uppertier;
-        var region2 = dashape.properties.household_total_uppertier;
-        var region3 = dashape.properties.dwellings_total_uppertier;
+        var region1 = yorkPopulation;
+        var region2 = yorkHouseholds;
+        var region3 = yorkDwellings;
         var region4 = dashape.properties.low_rise_regional;
         var region5 = dashape.properties.mid_rise_regional;
         var region6 = dashape.properties.high_rise_regional;
@@ -3843,27 +3974,27 @@ $("input[type=radio][id=btn2]").click(function(){
               else if (activeids.includes(id)===true) {
                 ind = activeids.indexOf(id)
                 activeids.splice(ind,1);
-                queriednumbers1.push(queriednumber1);
-                queriednumbers2.push(queriednumber2);
-                queriednumbers3.push(queriednumber3);
-                queriednumbers4.push(queriednumber4);
-                queriednumbers5.push(queriednumber5);
-                queriednumbers6.push(queriednumber6);
-                queriednumbers7.push(queriednumber7);
-                queriednumbers8.push(queriednumber8);
-                queriednumbers9.push(queriednumber9);
-                queriednumbers10.push(queriednumber10);
-                queriednumbers11.push(queriednumber11);
-                queriednumbers12.push(queriednumber12);
-                queriednumbers13.push(queriednumber13);
-                queriednumbers14.push(queriednumber14);
-                queriednumbers15.push(queriednumber15);
-                queriednumbers16.push(queriednumber16);
-                queriednumbers17.push(queriednumber17);
-                queriednumbers18.push(queriednumber18);
-                queriednumbers19.push(queriednumber19);
-                queriednumbers20.push(queriednumber20);
-                queriednumbers21.push(queriednumber21);
+                queriednumbers1.splice(ind,1);
+                queriednumbers2.splice(ind,1);
+                queriednumbers3.splice(ind,1);
+                queriednumbers4.splice(ind,1);
+                queriednumbers5.splice(ind,1);
+                queriednumbers6.splice(ind,1);
+                queriednumbers7.splice(ind,1);
+                queriednumbers8.splice(ind,1);
+                queriednumbers9.splice(ind,1);
+                queriednumbers10.splice(ind,1);
+                queriednumbers11.splice(ind,1);
+                queriednumbers12.splice(ind,1);
+                queriednumbers13.splice(ind,1);
+                queriednumbers14.splice(ind,1);
+                queriednumbers15.splice(ind,1);
+                queriednumbers16.splice(ind,1);
+                queriednumbers17.splice(ind,1);
+                queriednumbers18.splice(ind,1);
+                queriednumbers19.splice(ind,1);
+                queriednumbers20.splice(ind,1);
+                queriednumbers21.splice(ind,1);
                 let filter = ['match', ['get', 'dauid'], activeids, true, false]
                 map.setFilter("York-select",filter)
                 map.setLayoutProperty("York-select", 'visibility', 'visible')
@@ -3896,40 +4027,40 @@ $("input[type=radio][id=btn2]").click(function(){
               var themetotal21 = queriednumbers21.reduce(add);
 
               //dynamically calculate the group percentage
-              var penetr1 = ((region1/1109909)*100).toFixed(2);//population
-              var penetr2 = ((region2/357085)*100).toFixed(2);//households
-              var penetr3 = ((region3/369928)*100).toFixed(2);//dwellings
-              var penetr4 = ((region4/357085)*100).toFixed(2);//households
-              var penetr5 = ((region5/357085)*100).toFixed(2);//households
-              var penetr6 = ((region6/357085)*100).toFixed(2);//households
-              var penetr7 = ((region7/357085)*100).toFixed(2);//households
-              var penetr8 = ((region8/357085)*100).toFixed(2);//households
-              var penetr9 = ((region9/357085)*100).toFixed(2);//households
-              var penetr10 = ((region10/357085)*100).toFixed(2);//households
-              var penetr11 = ((region11/357085)*100).toFixed(2);//households
-              var penetr12 = ((region12/357085)*100).toFixed(2);//households
-              var penetr13 = ((region13/357085)*100).toFixed(2);//households
-              var penetr14 = ((region14/357085)*100).toFixed(2);//households
-              var penetr15 = ((region15/357085)*100).toFixed(2);//households
-              var penetr16 = ((region16/357085)*100).toFixed(2);//households
-              var penetr17 = ((region17/357085)*100).toFixed(2);//households
-              var penetr18 = ((region18/357085)*100).toFixed(2);//households
-              var penetr19 = ((region19/1109909)*100).toFixed(2);//population
-              var penetr20 = ((region20/1109909)*100).toFixed(2);//population
-              var penetr21 = ((region21/1109909)*100).toFixed(2);//population
+              var penetr1 = ((region1/yorkPopulation)*100).toFixed(2);//population
+              var penetr2 = ((region2/yorkHouseholds)*100).toFixed(2);//households
+              var penetr3 = ((region3/yorkDwellings)*100).toFixed(2);//dwellings
+              var penetr4 = ((region4/yorkDwellings)*100).toFixed(2);//households
+              var penetr5 = ((region5/yorkDwellings)*100).toFixed(2);//households
+              var penetr6 = ((region6/yorkDwellings)*100).toFixed(2);//households
+              var penetr7 = ((region7/yorkHouseholds)*100).toFixed(2);//households
+              var penetr8 = ((region8/yorkHouseholds)*100).toFixed(2);//households
+              var penetr9 = ((region9/yorkHouseholds)*100).toFixed(2);//households
+              var penetr10 = ((region10/yorkHouseholds)*100).toFixed(2);//households
+              var penetr11 = ((region11/yorkHouseholds)*100).toFixed(2);//households
+              var penetr12 = ((region12/yorkHouseholds)*100).toFixed(2);//households
+              var penetr13 = ((region13/yorkHouseholds)*100).toFixed(2);//households
+              var penetr14 = ((region14/yorkHouseholds)*100).toFixed(2);//households
+              var penetr15 = ((region15/yorkHouseholds)*100).toFixed(2);//households
+              var penetr16 = ((region16/yorkHouseholds)*100).toFixed(2);//households
+              var penetr17 = ((region17/yorkHouseholds)*100).toFixed(2);//households
+              var penetr18 = ((region18/yorkHouseholds)*100).toFixed(2);//households
+              var penetr19 = ((region19/yorkPopulation)*100).toFixed(2);//population
+              var penetr20 = ((region20/yorkPopulation)*100).toFixed(2);//population
+              var penetr21 = ((region21/yorkPopulation)*100).toFixed(2);//population
 
-              //dynamically calculate the selection percentage
               var regetr1 = ((themetotal1/themetotal1)*100).toFixed(2);
               console.log("regetr1:"+regetr1)
               var regetr2 = ((themetotal2/themetotal2)*100).toFixed(2);
               var regetr3 = ((themetotal3/themetotal3)*100).toFixed(2);
-              var regetr4 = ((themetotal3/themetotal2)*100).toFixed(2);
-              var regetr5 = ((themetotal5/themetotal2)*100).toFixed(2);
-              var regetr6 = ((themetotal6/themetotal2)*100).toFixed(2);
+              var regetr4 = ((themetotal4/themetotal3)*100).toFixed(2);
+              var regetr5 = ((themetotal5/themetotal3)*100).toFixed(2);
+              var regetr6 = ((themetotal6/themetotal3)*100).toFixed(2);
               var regetr7 = ((themetotal7/themetotal2)*100).toFixed(2);
               var regetr8 = ((themetotal8/themetotal2)*100).toFixed(2);
               var regetr9 = ((themetotal9/themetotal2)*100).toFixed(2);
               var regetr10 = ((themetotal10/themetotal2)*100).toFixed(2);
+              console.log("regetr10:"+regetr10)
               var regetr11 = ((themetotal11/themetotal2)*100).toFixed(2);
               var regetr12 = ((themetotal12/themetotal2)*100).toFixed(2);
               var regetr13 = ((themetotal13/themetotal2)*100).toFixed(2);
@@ -4061,6 +4192,9 @@ $("input[type=radio][id=btn2]").click(function(){
     });
 
 $("input[type=radio][id=btn3]").click(function(){
+     var peelPopulation = 1381739;
+     var peelHouseholds = 430180;
+     var peelDwellings = 585265;
      map.setLayoutProperty("Peel-gen", 'visibility', 'visible')
      peelclear();
      map.flyTo({center: peel_coord, zoom: 12, bearing: 0, pitch: 45 })
@@ -4118,9 +4252,9 @@ $("input[type=radio][id=btn3]").click(function(){
          var queriednumber19 = dashape.properties.commute_driver;
          var queriednumber20 = dashape.properties.commute_public_transit;
          var queriednumber21 = dashape.properties.commute_active;
-         var region1 = dashape.properties.population_total_uppertier;
-         var region2 = dashape.properties.household_total_uppertier;
-         var region3 = dashape.properties.dwellings_total_uppertier;
+         var region1 = peelPopulation;
+         var region2 = peelHouseholds;
+         var region3 = peelDwellings;
          var region4 = dashape.properties.low_rise_regional;
          var region5 = dashape.properties.mid_rise_regional;
          var region6 = dashape.properties.high_rise_regional;
@@ -4172,27 +4306,27 @@ $("input[type=radio][id=btn3]").click(function(){
            else if (activeids.includes(id)===true) {
              ind = activeids.indexOf(id)
              activeids.splice(ind,1);
-             queriednumbers1.push(queriednumber1);
-             queriednumbers2.push(queriednumber2);
-             queriednumbers3.push(queriednumber3);
-             queriednumbers4.push(queriednumber4);
-             queriednumbers5.push(queriednumber5);
-             queriednumbers6.push(queriednumber6);
-             queriednumbers7.push(queriednumber7);
-             queriednumbers8.push(queriednumber8);
-             queriednumbers9.push(queriednumber9);
-             queriednumbers10.push(queriednumber10);
-             queriednumbers11.push(queriednumber11);
-             queriednumbers12.push(queriednumber12);
-             queriednumbers13.push(queriednumber13);
-             queriednumbers14.push(queriednumber14);
-             queriednumbers15.push(queriednumber15);
-             queriednumbers16.push(queriednumber16);
-             queriednumbers17.push(queriednumber17);
-             queriednumbers18.push(queriednumber18);
-             queriednumbers19.push(queriednumber19);
-             queriednumbers20.push(queriednumber20);
-             queriednumbers21.push(queriednumber21);
+             queriednumbers1.splice(ind,1);
+             queriednumbers2.splice(ind,1);
+             queriednumbers3.splice(ind,1);
+             queriednumbers4.splice(ind,1);
+             queriednumbers5.splice(ind,1);
+             queriednumbers6.splice(ind,1);
+             queriednumbers7.splice(ind,1);
+             queriednumbers8.splice(ind,1);
+             queriednumbers9.splice(ind,1);
+             queriednumbers10.splice(ind,1);
+             queriednumbers11.splice(ind,1);
+             queriednumbers12.splice(ind,1);
+             queriednumbers13.splice(ind,1);
+             queriednumbers14.splice(ind,1);
+             queriednumbers15.splice(ind,1);
+             queriednumbers16.splice(ind,1);
+             queriednumbers17.splice(ind,1);
+             queriednumbers18.splice(ind,1);
+             queriednumbers19.splice(ind,1);
+             queriednumbers20.splice(ind,1);
+             queriednumbers21.splice(ind,1);
              let filter = ['match', ['get', 'dauid'], activeids, true, false]
              map.setFilter("Peel-select",filter)
              map.setLayoutProperty("Peel-select", 'visibility', 'visible')
@@ -4225,36 +4359,35 @@ $("input[type=radio][id=btn3]").click(function(){
            var themetotal21 = queriednumbers21.reduce(add);
 
            //dynamically calculate the group percentage
-           var penetr1 = ((region1/1381739)*100).toFixed(2);//population
-           var penetr2 = ((region2/430180)*100).toFixed(2);//households
-           var penetr3 = ((region3/443918)*100).toFixed(2);//dwellings
-           var penetr4 = ((region4/430180)*100).toFixed(2);//households
-           var penetr5 = ((region5/430180)*100).toFixed(2);//households
-           var penetr6 = ((region6/430180)*100).toFixed(2);//households
-           var penetr7 = ((region7/430180)*100).toFixed(2);//households
-           var penetr8 = ((region8/430180)*100).toFixed(2);//households
-           var penetr9 = ((region9/430180)*100).toFixed(2);//households
-           var penetr10 = ((region10/430180)*100).toFixed(2);//households
-           var penetr11 = ((region11/430180)*100).toFixed(2);//households
-           var penetr12 = ((region12/430180)*100).toFixed(2);//households
-           var penetr13 = ((region13/430180)*100).toFixed(2);//households
-           var penetr14 = ((region14/430180)*100).toFixed(2);//households
-           var penetr15 = ((region15/430180)*100).toFixed(2);//households
-           var penetr16 = ((region16/430180)*100).toFixed(2);//households
-           var penetr17 = ((region17/430180)*100).toFixed(2);//households
-           var penetr18 = ((region18/430180)*100).toFixed(2);//households
-           var penetr19 = ((region19/1381739)*100).toFixed(2);//population
-           var penetr20 = ((region20/1381739)*100).toFixed(2);//population
-           var penetr21 = ((region21/1381739)*100).toFixed(2);//population
+           var penetr1 = ((region1/peelPopulation)*100).toFixed(2);//population
+           var penetr2 = ((region2/peelHouseholds)*100).toFixed(2);//households
+           var penetr3 = ((region3/peelDwellings)*100).toFixed(2);//dwellings
+           var penetr4 = ((region4/peelHouseholds)*100).toFixed(2);//households
+           var penetr5 = ((region5/peelHouseholds)*100).toFixed(2);//households
+           var penetr6 = ((region6/peelHouseholds)*100).toFixed(2);//households
+           var penetr7 = ((region7/peelHouseholds)*100).toFixed(2);//households
+           var penetr8 = ((region8/peelHouseholds)*100).toFixed(2);//households
+           var penetr9 = ((region9/peelHouseholds)*100).toFixed(2);//households
+           var penetr10 = ((region10/peelHouseholds)*100).toFixed(2);//households
+           var penetr11 = ((region11/peelHouseholds)*100).toFixed(2);//households
+           var penetr12 = ((region12/peelHouseholds)*100).toFixed(2);//households
+           var penetr13 = ((region13/peelHouseholds)*100).toFixed(2);//households
+           var penetr14 = ((region14/peelHouseholds)*100).toFixed(2);//households
+           var penetr15 = ((region15/peelHouseholds)*100).toFixed(2);//households
+           var penetr16 = ((region16/peelHouseholds)*100).toFixed(2);//households
+           var penetr17 = ((region17/peelHouseholds)*100).toFixed(2);//households
+           var penetr18 = ((region18/peelHouseholds)*100).toFixed(2);//households
+           var penetr19 = ((region19/peelPopulation)*100).toFixed(2);//population
+           var penetr20 = ((region20/peelPopulation)*100).toFixed(2);//population
+           var penetr21 = ((region21/peelPopulation)*100).toFixed(2);//population
 
-           //dynamically calculate the selection percentage
            var regetr1 = ((themetotal1/themetotal1)*100).toFixed(2);
            console.log("regetr1:"+regetr1)
            var regetr2 = ((themetotal2/themetotal2)*100).toFixed(2);
            var regetr3 = ((themetotal3/themetotal3)*100).toFixed(2);
-           var regetr4 = ((themetotal3/themetotal2)*100).toFixed(2);
-           var regetr5 = ((themetotal5/themetotal2)*100).toFixed(2);
-           var regetr6 = ((themetotal6/themetotal2)*100).toFixed(2);
+           var regetr4 = ((themetotal4/themetotal3)*100).toFixed(2);
+           var regetr5 = ((themetotal5/themetotal3)*100).toFixed(2);
+           var regetr6 = ((themetotal6/themetotal3)*100).toFixed(2);
            var regetr7 = ((themetotal7/themetotal2)*100).toFixed(2);
            var regetr8 = ((themetotal8/themetotal2)*100).toFixed(2);
            var regetr9 = ((themetotal9/themetotal2)*100).toFixed(2);
@@ -4389,6 +4522,9 @@ $("input[type=radio][id=btn3]").click(function(){
     });
 
 $("input[type=radio][id=btn4]").click(function(){
+      var durhamPopulation = 645862;
+      var durhamHouseholds = 227905;
+      var durhamDwellings = 287925;
       map.setLayoutProperty("Durham-gen", 'visibility', 'visible')
       durhamclear();
       map.flyTo({center: durham_coord, zoom: 10, bearing: 0, pitch: 45})
@@ -4446,9 +4582,9 @@ $("input[type=radio][id=btn4]").click(function(){
           var queriednumber19 = dashape.properties.commute_driver;
           var queriednumber20 = dashape.properties.commute_public_transit;
           var queriednumber21 = dashape.properties.commute_active;
-          var region1 = dashape.properties.population_total_uppertier;
-          var region2 = dashape.properties.household_total_uppertier;
-          var region3 = dashape.properties.dwellings_total_uppertier;
+          var region1 = durhamPopulation;
+          var region2 = durhamHouseholds;
+          var region3 = durhamDwellings
           var region4 = dashape.properties.low_rise_regional;
           var region5 = dashape.properties.mid_rise_regional;
           var region6 = dashape.properties.high_rise_regional;
@@ -4467,7 +4603,6 @@ $("input[type=radio][id=btn4]").click(function(){
           var region19 = dashape.properties.commute_driver_regional;
           var region20 = dashape.properties.commute_public_transit_regional;
           var region21 = dashape.properties.commute_active_total_regional;
-
           //dynamically toggle selection on click
             if (activeids.includes(id)===false) {
               queriednumbers1.push(queriednumber1);
@@ -4500,27 +4635,27 @@ $("input[type=radio][id=btn4]").click(function(){
             else if (activeids.includes(id)===true) {
               ind = activeids.indexOf(id)
               activeids.splice(ind,1);
-              queriednumbers1.push(queriednumber1);
-              queriednumbers2.push(queriednumber2);
-              queriednumbers3.push(queriednumber3);
-              queriednumbers4.push(queriednumber4);
-              queriednumbers5.push(queriednumber5);
-              queriednumbers6.push(queriednumber6);
-              queriednumbers7.push(queriednumber7);
-              queriednumbers8.push(queriednumber8);
-              queriednumbers9.push(queriednumber9);
-              queriednumbers10.push(queriednumber10);
-              queriednumbers11.push(queriednumber11);
-              queriednumbers12.push(queriednumber12);
-              queriednumbers13.push(queriednumber13);
-              queriednumbers14.push(queriednumber14);
-              queriednumbers15.push(queriednumber15);
-              queriednumbers16.push(queriednumber16);
-              queriednumbers17.push(queriednumber17);
-              queriednumbers18.push(queriednumber18);
-              queriednumbers19.push(queriednumber19);
-              queriednumbers20.push(queriednumber20);
-              queriednumbers21.push(queriednumber21);
+              queriednumbers1.splice(ind,1);
+              queriednumbers2.splice(ind,1);
+              queriednumbers3.splice(ind,1);
+              queriednumbers4.splice(ind,1);
+              queriednumbers5.splice(ind,1);
+              queriednumbers6.splice(ind,1);
+              queriednumbers7.splice(ind,1);
+              queriednumbers8.splice(ind,1);
+              queriednumbers9.splice(ind,1);
+              queriednumbers10.splice(ind,1);
+              queriednumbers11.splice(ind,1);
+              queriednumbers12.splice(ind,1);
+              queriednumbers13.splice(ind,1);
+              queriednumbers14.splice(ind,1);
+              queriednumbers15.splice(ind,1);
+              queriednumbers16.splice(ind,1);
+              queriednumbers17.splice(ind,1);
+              queriednumbers18.splice(ind,1);
+              queriednumbers19.splice(ind,1);
+              queriednumbers20.splice(ind,1);
+              queriednumbers21.splice(ind,1);
               let filter = ['match', ['get', 'dauid'], activeids, true, false]
               map.setFilter("Durham-select",filter)
               map.setLayoutProperty("Durham-select", 'visibility', 'visible')
@@ -4553,36 +4688,35 @@ $("input[type=radio][id=btn4]").click(function(){
             var themetotal21 = queriednumbers21.reduce(add);
 
             //dynamically calculate the group percentage
-            var penetr1 = ((region1/645862)*100).toFixed(2);//population
-            var penetr2 = ((region2/227905)*100).toFixed(2);//households
-            var penetr3 = ((region3/233936)*100).toFixed(2);//dwellings
-            var penetr4 = ((region4/227905)*100).toFixed(2);//households
-            var penetr5 = ((region5/227905)*100).toFixed(2);//households
-            var penetr6 = ((region6/227905)*100).toFixed(2);//households
-            var penetr7 = ((region7/227905)*100).toFixed(2);//households
-            var penetr8 = ((region8/227905)*100).toFixed(2);//households
-            var penetr9 = ((region9/227905)*100).toFixed(2);//households
-            var penetr10 = ((region10/227905)*100).toFixed(2);//households
-            var penetr11 = ((region11/227905)*100).toFixed(2);//households
-            var penetr12 = ((region12/227905)*100).toFixed(2);//households
-            var penetr13 = ((region13/227905)*100).toFixed(2);//households
-            var penetr14 = ((region14/227905)*100).toFixed(2);//households
-            var penetr15 = ((region15/227905)*100).toFixed(2);//households
-            var penetr16 = ((region16/227905)*100).toFixed(2);//households
-            var penetr17 = ((region17/227905)*100).toFixed(2);//households
-            var penetr18 = ((region18/227905)*100).toFixed(2);//households
-            var penetr19 = ((region19/227905)*100).toFixed(2);//population
-            var penetr20 = ((region20/227905)*100).toFixed(2);//population
-            var penetr21 = ((region21/227905)*100).toFixed(2);//population
+            var penetr1 = ((region1/durhamPopulation)*100).toFixed(2);//population
+            var penetr2 = ((region2/durhamHouseholds)*100).toFixed(2);//households
+            var penetr3 = ((region3/durhamDwellings)*100).toFixed(2);//dwellings
+            var penetr4 = ((region4/durhamDwellings)*100).toFixed(2);//households
+            var penetr5 = ((region5/durhamDwellings)*100).toFixed(2);//households
+            var penetr6 = ((region6/durhamDwellings)*100).toFixed(2);//households
+            var penetr7 = ((region7/durhamHouseholds)*100).toFixed(2);//households
+            var penetr8 = ((region8/durhamHouseholds)*100).toFixed(2);//households
+            var penetr9 = ((region9/durhamHouseholds)*100).toFixed(2);//households
+            var penetr10 = ((region10/durhamHouseholds)*100).toFixed(2);//households
+            var penetr11 = ((region11/durhamHouseholds)*100).toFixed(2);//households
+            var penetr12 = ((region12/durhamHouseholds)*100).toFixed(2);//households
+            var penetr13 = ((region13/durhamHouseholds)*100).toFixed(2);//households
+            var penetr14 = ((region14/durhamHouseholds)*100).toFixed(2);//households
+            var penetr15 = ((region15/durhamHouseholds)*100).toFixed(2);//households
+            var penetr16 = ((region16/durhamHouseholds)*100).toFixed(2);//households
+            var penetr17 = ((region17/durhamHouseholds)*100).toFixed(2);//households
+            var penetr18 = ((region18/durhamHouseholds)*100).toFixed(2);//households
+            var penetr19 = ((region19/durhamPopulation)*100).toFixed(2);//population
+            var penetr20 = ((region20/durhamPopulation)*100).toFixed(2);//population
+            var penetr21 = ((region21/durhamPopulation)*100).toFixed(2);//population
 
-            //dynamically calculate the selection percentage
             var regetr1 = ((themetotal1/themetotal1)*100).toFixed(2);
             console.log("regetr1:"+regetr1)
             var regetr2 = ((themetotal2/themetotal2)*100).toFixed(2);
             var regetr3 = ((themetotal3/themetotal3)*100).toFixed(2);
-            var regetr4 = ((themetotal4/themetotal2)*100).toFixed(2);
-            var regetr5 = ((themetotal5/themetotal2)*100).toFixed(2);
-            var regetr6 = ((themetotal6/themetotal2)*100).toFixed(2);
+            var regetr4 = ((themetotal4/themetotal3)*100).toFixed(2);
+            var regetr5 = ((themetotal5/themetotal3)*100).toFixed(2);
+            var regetr6 = ((themetotal6/themetotal3)*100).toFixed(2);
             var regetr7 = ((themetotal7/themetotal2)*100).toFixed(2);
             var regetr8 = ((themetotal8/themetotal2)*100).toFixed(2);
             var regetr9 = ((themetotal9/themetotal2)*100).toFixed(2);
