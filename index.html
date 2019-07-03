@@ -29,11 +29,20 @@
  </div>
 </div>
 
-
+<!-- <div id="stylemenu">
+<button class="mapstyle" id="vector">Map</button>
+<button class="mapstyle" id="aerial">Aerial</button>
+</div> -->
 
 <!--side panel -->
 <div class="sidenav" id="detailmenu">
+
+  <div id="togglescontainer">
   <!--choose another region -->
+  <button class="toggles" id="restart">Clear Map</button>
+  <!--clear the statistics -->
+  <button class="toggles" id="clear">Clear Selection</button>
+  </div>
   <div class="radiocontainer" id="regions">
       <p id="title1">Select a Region</p>
       <!--choose another region -->
@@ -56,7 +65,6 @@
             <label for="btn4">Durham Region</label>
         </p>
       </form>
-   <button class="toggles" id="restart">Clear Map</button>
    </div>
 
   <!--statistics -->
@@ -196,8 +204,6 @@
       <label for="#lay33">Over $150,000</label>
       </p>
     </form>
-    <!--clear the statistics -->
-    <button class="toggles" id="clear">Clear Selection</button>
     </div>
 
     <div class="col">
@@ -476,7 +482,7 @@ background-color: #C3C3C3;
   display: table;
   width: 100%;
   padding-left: 20px;
-  top: 10%;
+  top: 6%;
   position: relative;
 }
 
@@ -484,28 +490,49 @@ background-color: #C3C3C3;
   display: block;
   width: 100%;
   padding-left: 20px;
-  top: 3%;
+  top: 2%;
   position: relative;
 }
 
 
-.region:hover {
- display: block;
- padding-right: 50px;
- font-style: italic;
+#togglescontainer {
+width: 100%;
+height: 3%;
+font-weight: bold;
 }
 
+#restart {
+  position: relative;
+  top: 15%;
+  left: 3%;
+  width: 10%;
+  min-width: 125px;
+  max-width: 200px;
+  margin-right: 3px;
+}
+
+#clear {
+  position: relative;
+  top: 15%;
+  left: 3%;
+  width: 10%;
+  min-width: 125px;
+  max-width: 200px;
+  margin-left: 3px;
+}
+
+
 .toggles {
-  display: block;
-  background-color: #F0F0F0;
-  border-style: none;
+  display: inline-block;
+  border-color: #6A6A6A;
+  border-style: solid;
+  border-width: 1px;
   position: absolute;
 }
 
 .toggles:hover {
-  background-color: #CACACA;
+  background-color: #FADD83;
 }
-
 
 .col {
   display: table-cell;
@@ -522,18 +549,6 @@ background-color: #C3C3C3;
   line-height: 20px;
 }
 
-.layer:hover {
-  font-style: italic;
-}
-
-label  {
-  display: block;
-  padding: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-align: left;
-
-}
 
 /*layer button styles*/
 [name="layer"]:checked,
@@ -647,6 +662,36 @@ label  {
     transform: scale(1);
 }
 
+label  {
+  display: block;
+  padding: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+
+}
+
+input[name=layer]:hover ~ label {
+  color: #1E1E1E;
+  font-weight: bold;
+}
+
+input[name=region]:hover ~ label {
+  color: #1E1E1E;
+  font-weight: bold;
+}
+
+/* #vector {
+  position:relative;
+  right: 50%;
+  display: inline-block;
+}
+
+#aerial {
+  position:relative;
+  right: 2%;
+  display: inline-block;
+} */
 
 .mapboxgl-ctrl-icon {
   right: 10px;
@@ -669,6 +714,8 @@ label  {
 
 <script>
 //set your starting variables - map
+
+
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RvcnByaW1lIiwiYSI6InR6YWtmU2MifQ.mzm3c3_RSxKKc5MgUe0Fig';
 var map = new mapboxgl.Map({
   container: 'map', //container id
@@ -679,27 +726,44 @@ var map = new mapboxgl.Map({
   pitch: 0, //starting pitch
 });
 
+
 //hard coded variables
 var toronto_coord = [-79.372458, 43.635469]
 var york_coord =    [-79.309697, 43.900075]
-var durham_coord =  [-78.687524, 43.903606]
+var durham_coord =  [-78.868511, 43.894378]
 var peel_coord =    [-79.602378, 43.584678]
 
 
 //begin jquery functions
 $( document ).ready(function() {
-//$(".wash").hide(0);
+//$("#vector").hide(0);
+//$("#aerial").hide(0);
 $(".showside").hide(0);
 $("#detailmenu").hide(0);
 $("#map").hide(0);
 $("#proceed").click(function(){
+  $("#vector").show(0);
+  $("#aerial").show(0);
   $("#map").fadeIn(500);
   $("#detailmenu").fadeIn(500);
   $(".wash").hide();
+  $(".colcontainer").hide(0);
 })
 
   //on any show of the map, load
  map.on('style.load', function() {
+
+         // $("#vector").click(function{
+         //   map.setStyle('mapbox://styles/storprime/cjdalgxvfayh22rnuqvpq2gaq');
+         // };)
+         //
+         // $("#aerial").click(function{
+         //   map.setStyle('mmapbox://styles/storprime/cjxndu5j02nug1cqjky9lua78');
+         // };)
+
+         //toggle underlying
+         var toggleableStyles = [ 'mapbox://styles/storprime/cjdalgxvfayh22rnuqvpq2gaq', 'mapbox://styles/storprime/cjxndu5j02nug1cqjky9lua78' ];
+
         // zoom and rotation controls for the <map>
           document.getElementById('map').style.cursor = "pointer";
           map.addControl (new mapboxgl.NavigationControl(),'top-left');
@@ -711,6 +775,7 @@ $("#proceed").click(function(){
            });
 
           //add sources
+
 
           map.addSource('GGH_Upper_Tier_Municipalities-0no6kp', {
             type: "vector",
@@ -737,6 +802,7 @@ $("#proceed").click(function(){
             type:"vector",
             url: "mapbox://storprime.2t6giu4s"
           });
+
 
           map.addLayer({
                 'id': 'GGH Outlines',
@@ -4032,7 +4098,6 @@ $("#proceed").click(function(){
 
   });//close initial layer management
 
-  // set properties beforehand -  should be an array eg (["dashape.properties.commute_public_transit", "dashape.properties.commute_public_transit"]
 
  var peelclear  = function () {
    var peel_visibility = map.getLayoutProperty("Peel-gen", 'visibility');
@@ -4965,6 +5030,7 @@ $("input[type=radio][id=btn1]").click(function(){
 
   map.setLayoutProperty("Toronto-gen", 'visibility', 'visible')
   torontoclear();
+  $(".colcontainer").slideDown(50);
   map.flyTo({center: toronto_coord, zoom: 12, bearing: 40, pitch: 45 })
   var queriednumbers1 = []
   var queriednumbers2 = []
@@ -5426,6 +5492,7 @@ $("input[type=radio][id=btn1]").click(function(){
   $("#restart").click(function(){
     clearall();
     resetstats();
+    $(".colcontainer").slideUp(50);
     });
   });
 
@@ -5434,6 +5501,7 @@ $("input[type=radio][id=btn2]").click(function(){
       var yorkHouseholds = 357085;
       var yorkDwellings = 449355;
       map.setLayoutProperty("York-gen", 'visibility', 'visible')
+      $(".colcontainer").slideDown(50);
       yorkclear();
       map.flyTo({center: york_coord, zoom: 12, pitch: 45, bearing: 25})
       var queriednumbers1 = []
@@ -5891,12 +5959,15 @@ $("input[type=radio][id=btn2]").click(function(){
           $(".diag").html( "<p>"+"-"+"</p>" );
         };
 
-      $("#clear").click(resetstats);
+      $("#clear").click(function(){
+        resetstats();
+        });
 
         //restart functions
       $("#restart").click(function(){
         clearall();
         resetstats();
+        $(".colcontainer").slideUp(50);
         });
     });
 
@@ -5906,6 +5977,7 @@ $("input[type=radio][id=btn3]").click(function(){
      var peelDwellings = 585265;
      map.setLayoutProperty("Peel-gen", 'visibility', 'visible')
      peelclear();
+     $(".colcontainer").slideDown(50);
      map.flyTo({center: peel_coord, zoom: 12, bearing: 0, pitch: 45 })
      var queriednumbers1 = []
      var queriednumbers2 = []
@@ -6370,6 +6442,7 @@ $("input[type=radio][id=btn3]").click(function(){
        $("#restart").click(function(){
          clearall();
          resetstats();
+         $(".colcontainer").slideUp(50);
        });
     });
 
@@ -6378,6 +6451,7 @@ $("input[type=radio][id=btn4]").click(function(){
       var durhamHouseholds = 227905;
       var durhamDwellings = 287925;
       map.setLayoutProperty("Durham-gen", 'visibility', 'visible')
+      $(".colcontainer").slideDown(50);
       durhamclear();
       map.flyTo({center: durham_coord, zoom: 12, bearing: 0, pitch: 45})
       var queriednumbers1 = []
@@ -6841,6 +6915,7 @@ $("input[type=radio][id=btn4]").click(function(){
         $("#restart").click(function(){
           clearall();
           resetstats();
+          $(".colcontainer").slideUp(50);
         });
      });
 });
