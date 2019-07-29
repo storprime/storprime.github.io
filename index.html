@@ -5031,7 +5031,7 @@ $("input[type=radio][id=btn1]").click(function(){
   map.setLayoutProperty("Toronto-gen", 'visibility', 'visible')
   torontoclear();
   $(".colcontainer").slideDown(50);
-  map.flyTo({center: toronto_coord, zoom: 12, bearing: 40, pitch: 45 })
+  map.flyTo({center: toronto_coord, zoom: 12, bearing: 40, pitch: 0 })
   var queriednumbers1 = []
   var queriednumbers2 = []
   var queriednumbers3 = []
@@ -5503,7 +5503,7 @@ $("input[type=radio][id=btn2]").click(function(){
       map.setLayoutProperty("York-gen", 'visibility', 'visible')
       $(".colcontainer").slideDown(50);
       yorkclear();
-      map.flyTo({center: york_coord, zoom: 12, pitch: 45, bearing: 25})
+      map.flyTo({center: york_coord, zoom: 12, pitch: 0, bearing: 25})
       var queriednumbers1 = []
       var queriednumbers2 = []
       var queriednumbers3 = []
@@ -5978,7 +5978,7 @@ $("input[type=radio][id=btn3]").click(function(){
      map.setLayoutProperty("Peel-gen", 'visibility', 'visible')
      peelclear();
      $(".colcontainer").slideDown(50);
-     map.flyTo({center: peel_coord, zoom: 12, bearing: 0, pitch: 45 })
+     map.flyTo({center: peel_coord, zoom: 12, bearing: 0, pitch: 0 })
      var queriednumbers1 = []
      var queriednumbers2 = []
      var queriednumbers3 = []
@@ -6453,7 +6453,7 @@ $("input[type=radio][id=btn4]").click(function(){
       map.setLayoutProperty("Durham-gen", 'visibility', 'visible')
       $(".colcontainer").slideDown(50);
       durhamclear();
-      map.flyTo({center: durham_coord, zoom: 12, bearing: 0, pitch: 45})
+      map.flyTo({center: durham_coord, zoom: 12, bearing: 0, pitch: 0})
       var queriednumbers1 = []
       var queriednumbers2 = []
       var queriednumbers3 = []
